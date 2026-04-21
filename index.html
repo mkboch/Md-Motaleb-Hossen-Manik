@@ -1,1063 +1,1606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Md Motaleb Hossen Manik — AI Researcher</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0a0e1a;
-    --bg2: #0f1525;
-    --bg3: #141b30;
-    --surface: #1a2340;
-    --accent: #4f9cf9;
-    --accent2: #7b61ff;
-    --accent3: #00d4aa;
-    --text: #e8edf8;
-    --muted: #8896b3;
-    --border: rgba(79,156,249,0.15);
-    --mono: 'DM Mono', monospace;
-    --serif: 'DM Serif Display', serif;
-    --sans: 'Instrument Sans', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* Grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(79,156,249,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(79,156,249,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Nav */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 3rem;
-    background: rgba(10,14,26,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  /* Hero */
-  .hero {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 3rem 4rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 4rem;
-    align-items: center;
-    width: 100%;
-  }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .hero-tag::before {
-    content: '';
-    width: 32px;
-    height: 1px;
-    background: var(--accent3);
-  }
-
-  h1 {
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    font-weight: 400;
-    line-height: 1.1;
-    color: var(--text);
-    margin-bottom: 0.25rem;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--muted);
-    margin: 1.5rem 0 2.5rem;
-    max-width: 560px;
-    line-height: 1.75;
-  }
-
-  .hero-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #0a0e1a;
-  }
-
-  .btn-primary:hover {
-    background: #6fb0ff;
-    transform: translateY(-1px);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-1px);
-  }
-
-  /* Avatar */
-  .avatar-wrap {
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  
-  .avatar-ring {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
-    padding: 3px;
-    animation: spin 8s linear infinite;
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .avatar-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--serif);
-    font-size: 4rem;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-  }
-
-  /* Stats row */
-  .stats-row {
-    display: flex;
-    gap: 2rem;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .stat-num {
-    font-family: var(--mono);
-    font-size: 1.5rem;
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    margin-top: 2px;
-  }
-
-  /* Sections */
-  section {
-    position: relative;
-    z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 5rem 3rem;
-  }
-
-  .section-tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .section-tag::before {
-    content: '//';
-    color: var(--accent);
-  }
-
-  h2 {
-    font-family: var(--serif);
-    font-size: 2.4rem;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 3rem;
-    line-height: 1.2;
-  }
-
-  /* Research areas */
-  .research-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .research-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2rem;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .research-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .research-card:hover {
-    border-color: rgba(79,156,249,0.35);
-    transform: translateY(-3px);
-  }
-
-  .research-card:hover::before { opacity: 1; }
-
-  .research-icon {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .research-card h3 {
-    font-family: var(--sans);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.75rem;
-  }
-
-  .research-card p {
-    font-size: 0.875rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  /* Publications */
-  .pub-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .pub-item {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.5rem 1.75rem;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 1.5rem;
-    align-items: start;
-    transition: border-color 0.2s;
-  }
-
-  .pub-item:hover {
-    border-color: rgba(79,156,249,0.3);
-  }
-
-  .pub-year {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent3);
-    padding-top: 3px;
-    white-space: nowrap;
-  }
-
-  .pub-title {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-    line-height: 1.45;
-  }
-
-  .pub-venue {
-    font-size: 0.825rem;
-    color: var(--muted);
-  }
-
-  .pub-badge {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 4px;
-    white-space: nowrap;
-    align-self: flex-start;
-  }
-
-  .badge-q1 {
-    background: rgba(0,212,170,0.1);
-    color: var(--accent3);
-    border: 1px solid rgba(0,212,170,0.25);
-  }
-
-  .badge-conf {
-    background: rgba(123,97,255,0.1);
-    color: #9b85ff;
-    border: 1px solid rgba(123,97,255,0.25);
-  }
-
-  .badge-preprint {
-    background: rgba(79,156,249,0.08);
-    color: var(--accent);
-    border: 1px solid rgba(79,156,249,0.2);
-  }
-
-  /* Timeline / Education */
-  .timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
-  }
-
-  .timeline-item {
-    position: relative;
-    margin-bottom: 2.5rem;
-    padding-left: 1.5rem;
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 8px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 12px var(--accent);
-  }
-
-  .timeline-date {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    margin-bottom: 0.4rem;
-  }
-
-  .timeline-title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.25rem;
-  }
-
-  .timeline-place {
-    font-size: 0.9rem;
-    color: var(--accent3);
-    margin-bottom: 0.5rem;
-  }
-
-  .timeline-detail {
-    font-size: 0.875rem;
-    color: var(--muted);
-  }
-
-  /* Skills */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .skill-group {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.5rem;
-  }
-
-  .skill-group-title {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .skill-tag {
-    font-size: 12px;
-    padding: 4px 10px;
-    border-radius: 4px;
-    background: var(--surface);
-    color: var(--muted);
-    border: 1px solid var(--border);
-    font-family: var(--mono);
-  }
-
-  /* Awards */
-  .awards-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .award-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-  }
-
-  .award-icon {
-    font-size: 1.25rem;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .award-title {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.2rem;
-  }
-
-  .award-detail {
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
-  /* Contact */
-  .contact-section {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .contact-link:hover { color: var(--accent); }
-
-  .contact-link-icon {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    min-width: 60px;
-    letter-spacing: 0.06em;
-  }
-
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-    position: relative;
-    z-index: 1;
-  }
-
-  footer a { color: var(--accent); text-decoration: none; }
-
-  /* Divider */
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-    margin: 0 3rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Floating badge */
-  .rpi-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent3);
-    border: 1px solid rgba(0,212,170,0.25);
-    background: rgba(0,212,170,0.06);
-    border-radius: 4px;
-    padding: 4px 10px;
-    margin-bottom: 0.75rem;
-    display: inline-flex;
-  }
-
-  .rpi-badge::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent3);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  /* Scroll animations */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { padding: 7rem 1.5rem 3rem; }
-    .hero-inner { grid-template-columns: 1fr; }
-    .avatar-wrap { display: none; }
-    section { padding: 3rem 1.5rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .pub-item { grid-template-columns: 1fr; }
-    .section-divider { margin: 0 1.5rem; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md Motaleb Hossen Manik | AI Researcher</title>
+  <meta name="description" content="Md Motaleb Hossen Manik. Ph.D. student at RPI working on multimodal AI, medical imaging education, AI safety, workflow auditability, and synthetic agent systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #10172b;
+      --bg-card: #151f37;
+      --surface: #1b2746;
+      --text: #e8edf8;
+      --muted: #9aa8c7;
+      --border: rgba(100, 145, 255, 0.14);
+      --accent: #66a3ff;
+      --accent-2: #8a6cff;
+      --accent-3: #17c79a;
+      --shadow: 0 20px 50px rgba(0,0,0,0.22);
+      --mono: "DM Mono", monospace;
+      --serif: "DM Serif Display", serif;
+      --sans: "Instrument Sans", sans-serif;
+      --maxw: 1120px;
+    }
+
+    body.light {
+      --bg: #f5f7fb;
+      --bg-soft: #eef2f8;
+      --bg-card: #ffffff;
+      --surface: #f6f8fc;
+      --text: #101828;
+      --muted: #5d6b85;
+      --border: rgba(16, 24, 40, 0.08);
+      --accent: #1f6feb;
+      --accent-2: #6d45d8;
+      --accent-3: #0f9d75;
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: radial-gradient(circle at top right, rgba(102,163,255,0.08), transparent 30%),
+                  radial-gradient(circle at bottom left, rgba(138,108,255,0.08), transparent 28%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(102,163,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(102,163,255,0.035) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--maxw), calc(100% - 2rem));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      width: min(var(--maxw), calc(100% - 2rem));
+      margin: 0 auto;
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.35rem;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      padding: 0.6rem 0.85rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    }
+
+    .hero {
+      padding: 5.5rem 0 3.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--accent-3);
+      margin-bottom: 1rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--accent-3);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+      padding: 0.42rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid rgba(23,199,154,0.25);
+      background: rgba(23,199,154,0.08);
+      color: var(--accent-3);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-3);
+      box-shadow: 0 0 10px rgba(23,199,154,0.65);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.9rem, 6vw, 5rem);
+      line-height: 1.04;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 760px;
+      margin-bottom: 1.65rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.82rem 1.15rem;
+      border-radius: 12px;
+      font-size: 0.96rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 65%, white));
+      color: #09111f;
+      border-color: transparent;
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.1rem 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-value {
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .hero-panel {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--bg-card) 92%, white 8%), var(--bg-card));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-title {
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-size: 0.78rem;
+      margin-bottom: 1rem;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .mini-item {
+      padding: 0.95rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--bg-soft) 65%, transparent);
+    }
+
+    .mini-item strong {
+      display: block;
+      font-size: 0.96rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .mini-item span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .section {
+      padding: 3.8rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker {
+      font-family: var(--mono);
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.77rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 800px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0.5rem 0 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.3rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.3rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.06rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .focus-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .focus-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.25rem 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-date {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-place {
+      color: var(--accent-3);
+      font-size: 0.94rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .timeline-detail {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--muted);
+      padding: 0.65rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+      background: color-mix(in srgb, var(--bg-card) 70%, var(--accent) 10%);
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 1rem;
+      align-items: start;
+      padding: 1.2rem 1.2rem;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      box-shadow: var(--shadow);
+    }
+
+    .pub-year {
+      font-family: var(--mono);
+      color: var(--accent-3);
+      font-size: 0.9rem;
+      padding-top: 0.18rem;
+    }
+
+    .pub-main h3 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .pub-main p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.7rem;
+    }
+
+    .pub-link {
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: 0.38rem 0.65rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+    }
+
+    .pub-badge {
+      white-space: nowrap;
+      font-family: var(--mono);
+      font-size: 0.77rem;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+    }
+
+    .skills-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .skill-card h3 {
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.95rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      padding: 0.42rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-family: var(--mono);
+    }
+
+    .list-card {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .list-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .list-item strong {
+      display: block;
+      margin-bottom: 0.18rem;
+    }
+
+    .list-item span {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0.95rem 1rem;
+      background: var(--bg-card);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    }
+
+    .contact-link .left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-link .label {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      margin-bottom: 0.18rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-link .value {
+      color: var(--text);
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .skills-wrap,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        padding: 0.9rem 0;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 4rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .pub-item {
+        grid-template-columns: 1fr;
+      }
+
+      .pub-badge {
+        justify-self: start;
+      }
+
+      .theme-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="#top"><strong>Md Motaleb Hossen Manik</strong></a>
 
-<!-- Nav -->
-<nav>
-  <span class="nav-logo">mmhm.dev</span>
-  <ul class="nav-links">
-    <li><a href="#research">Research</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- Hero -->
-<div class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="rpi-badge">PhD Candidate · RPI, Troy NY</div>
-      <div class="hero-tag">Multimodal AI · Safety · Agent Systems</div>
-      <h1>Md Motaleb<br>Hossen <em>Manik</em></h1>
-      <p class="hero-sub">
-        I build benchmarks, agent frameworks, and evaluation methods for multimodal AI systems
-        in safety-critical domains — with a focus on medical imaging education, workflow auditability,
-        and emergent norm-formation in synthetic agent societies.
-      </p>
-      <div class="hero-ctas">
-        <a href="mailto:manikm@rpi.edu" class="btn btn-primary">Get in touch</a>
-        <a href="https://scholar.google.com" class="btn btn-ghost" target="_blank">Google Scholar</a>
-        <a href="https://linkedin.com" class="btn btn-ghost" target="_blank">LinkedIn</a>
-      </div>
-
-      <div class="stats-row">
-        <div class="stat">
-          <span class="stat-num">456+</span>
-          <span class="stat-label">Citations</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">h=8</span>
-          <span class="stat-label">h-index</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">20+</span>
-          <span class="stat-label">Publications</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">1</span>
-          <span class="stat-label">US Patent</span>
-        </div>
-      </div>
+      <ul class="nav-links">
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="themeToggle" class="theme-btn" type="button">🌙 Theme</button></li>
+      </ul>
     </div>
+  </nav>
 
-    <div class="avatar-wrap">
-      <div class="avatar-ring">
-        <div class="avatar-inner">MM</div>
-      </div>
-    </div>
-  </div>
-</div>
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="reveal">
+            <div class="hero-badge">Ph.D. Student · RPI · Troy, NY</div>
+            <div class="eyebrow">Multimodal AI · Medical Imaging · Agent Systems</div>
+            <h1>Building <em>trustworthy</em> AI systems for multimodal learning, safety-critical workflows, and synthetic agent societies.</h1>
+            <p class="hero-sub">
+              I develop benchmarks, agent frameworks, and evaluation methods for multimodal AI systems, with a focus on medical imaging education, workflow auditability, and emergent norm-formation in synthetic agent societies. My work spans dataset construction, interactive systems, and verifiable provenance for accountable AI.
+            </p>
 
-<div class="section-divider"></div>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="CV.pdf" download>Download CV</a>
+              <a class="btn btn-secondary" href="mailto:manikm@rpi.edu">Email Me</a>
+              <a class="btn btn-secondary" href="https://scholar.google.com/citations?user=qrDs7WAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+              <a class="btn btn-secondary" href="https://www.linkedin.com/in/mh-manik/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
 
-<!-- Research -->
-<section id="research">
-  <div class="section-tag">Areas</div>
-  <h2>Research Focus</h2>
-  <div class="research-grid">
-    <div class="research-card reveal">
-      <span class="research-icon">🧠</span>
-      <h3>Multimodal Learning &amp; LLMs</h3>
-      <p>Designing MEDI-SLATE and MILU — benchmarks for medical imaging lecture understanding. Built ALIVE, a content-aware avatar-lecture interaction engine. Introduced SlideChain for blockchain-anchored semantic provenance and N-ReLU activation.</p>
-    </div>
-    <div class="research-card reveal">
-      <span class="research-icon">🤖</span>
-      <h3>AI Safety &amp; Synthetic Agent Systems</h3>
-      <p>Designed OpenClaw, an agent-only social network (Moltbook) to study risky instruction propagation. Developed ADAPT, an AI-driven decentralized publishing framework with a U.S. provisional patent. Investigating emergent self-regulation in synthetic societies.</p>
-    </div>
-    <div class="research-card reveal">
-      <span class="research-icon">🔗</span>
-      <h3>Secure Information &amp; Blockchain</h3>
-      <p>Blockchain-based frameworks for multi-party skyline queries, academic credential verification, medical data sharing, and GDPR-compliant personal data management using Hyperledger Fabric and IPFS.</p>
-    </div>
-    <div class="research-card reveal">
-      <span class="research-icon">📊</span>
-      <h3>Machine Learning &amp; NLP</h3>
-      <p>Sentiment analysis and emotion recognition for Bangla text. Adversarial robustness for text classifiers. CNN-based COVID-19 detection and genomic feature-based pandemic prediction.</p>
-    </div>
-  </div>
-</section>
+            <div class="stats">
+              <div class="stat-card">
+                <div class="stat-value">456+</div>
+                <div class="stat-label">Google Scholar citations</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">h = 8</div>
+                <div class="stat-label">Current h-index</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">2026</div>
+                <div class="stat-label">Recent journal acceptances</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">1</div>
+                <div class="stat-label">U.S. provisional patent</div>
+              </div>
+            </div>
+          </div>
 
-<div class="section-divider"></div>
-
-<!-- Publications -->
-<section id="publications">
-  <div class="section-tag">Selected works</div>
-  <h2>Publications</h2>
-  <div class="pub-list">
-
-    <div class="pub-item reveal">
-      <span class="pub-year">2026</span>
-      <div>
-        <div class="pub-title">MEDI-SLATE: A slide-lecture aligned text ensemble for medical imaging education</div>
-        <div class="pub-venue">Visual Computing for Industry, Biomedicine, and Art · Springer · IF 6.0</div>
-      </div>
-      <span class="pub-badge badge-q1">ESCI</span>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-year">2026</span>
-      <div>
-        <div class="pub-title">MILU: A Consensus Ensemble Benchmark for Multimodal Medical Imaging Lecture Understanding</div>
-        <div class="pub-venue">Journal of Medical Imaging · SPIE · Vol. 13, No. 6</div>
-      </div>
-      <span class="pub-badge badge-q1">Q2 SCIE</span>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-year">2025</span>
-      <div>
-        <div class="pub-title">Development of an Optically Emulated CT (OECT) Scanner for College Education</div>
-        <div class="pub-venue">Visual Computing for Industry, Biomedicine, and Art · Springer</div>
-      </div>
-      <span class="pub-badge badge-q1">IF 6.0</span>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-year">2025</span>
-      <div>
-        <div class="pub-title">Blockchain-aided comparative study of heart disease detection using machine learning</div>
-        <div class="pub-venue">Computers in Biology and Medicine · Elsevier · IF 7.0</div>
-      </div>
-      <span class="pub-badge badge-q1">Q1 SCIE</span>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-year">2025</span>
-      <div>
-        <div class="pub-title">ShaEr: A Blockchain-Based Framework for Secure Medical Data Sharing and Monetisation</div>
-        <div class="pub-venue">IET Blockchain · Wiley/IET</div>
-      </div>
-      <span class="pub-badge badge-q1">Q2</span>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-year">2026</span>
-      <div>
-        <div class="pub-title">OpenClaw Agents on Moltbook: Risky Instruction Sharing and Norm Enforcement in an Agent-Only Social Network</div>
-        <div class="pub-venue">arXiv:2602.02625 · Preprint</div>
-      </div>
-      <span class="pub-badge badge-preprint">arXiv</span>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-year">2025</span>
-      <div>
-        <div class="pub-title">SlideChain: Semantic Provenance for Lecture Understanding via Blockchain Registration</div>
-        <div class="pub-venue">arXiv:2512.21684 · Preprint</div>
-      </div>
-      <span class="pub-badge badge-preprint">arXiv</span>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-year">2025</span>
-      <div>
-        <div class="pub-title">Unifying Sentiment Analysis and Emotion Recognition for Bangla Text: A Hybrid Approach</div>
-        <div class="pub-venue">ECCE 2025 · IEEE Conference</div>
-      </div>
-      <span class="pub-badge badge-conf">IEEE</span>
-    </div>
-
-    <div class="pub-item reveal">
-      <span class="pub-year">2023</span>
-      <div>
-        <div class="pub-title">Enhancing Robustness of ML for Bangla Text Classification: Defensive Approach against Adversarial Attacks</div>
-        <div class="pub-venue">EICT 2023 · IEEE Conference <strong style="color:#9b85ff; font-weight:500">· Best Paper Award</strong></div>
-      </div>
-      <span class="pub-badge badge-conf">IEEE</span>
-    </div>
-
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- Education & Experience -->
-<section id="education">
-  <div class="section-tag">Background</div>
-  <h2>Education &amp; Experience</h2>
-
-  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
-    <div>
-      <h3 style="font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2rem;">Education</h3>
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Aug 2024 – Present</div>
-          <div class="timeline-title">Ph.D. in Computer Science</div>
-          <div class="timeline-place">Rensselaer Polytechnic Institute, Troy NY</div>
-          <div class="timeline-detail">Advisor: Prof. Ge Wang · Wang-AXIS Lab</div>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Sep 2020 – Mar 2023</div>
-          <div class="timeline-title">M.Sc. Eng. in CSE</div>
-          <div class="timeline-place">KUET, Bangladesh</div>
-          <div class="timeline-detail">CGPA 4.00 / 4.00 · Blockchain-based secure framework for multi-party skyline queries</div>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Nov 2015 – Mar 2020</div>
-          <div class="timeline-title">B.Sc. Eng. in CSE</div>
-          <div class="timeline-place">KUET, Bangladesh</div>
-          <div class="timeline-detail">CGPA 3.93 / 4.00 · <strong style="color:var(--accent3)">Ranked 1st</strong> out of 134 graduates</div>
+          <aside class="hero-panel reveal">
+            <div class="panel-title">Current profile</div>
+            <div class="mini-list">
+              <div class="mini-item">
+                <strong>Rensselaer Polytechnic Institute</strong>
+                <span>Ph.D. in Computer Science, advised by Prof. Ge Wang</span>
+              </div>
+              <div class="mini-item">
+                <strong>Research directions</strong>
+                <span>Multimodal learning, medical imaging education, AI safety, workflow auditability, blockchain-based provenance</span>
+              </div>
+              <div class="mini-item">
+                <strong>Academic roles</strong>
+                <span>Teaching Assistant at RPI and Assistant Professor on study leave from KUET</span>
+              </div>
+              <div class="mini-item">
+                <strong>Professional focus</strong>
+                <span>Seeking faculty or research scientist opportunities in trustworthy and interpretable AI</span>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div>
-      <h3 style="font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2rem;">Academic Roles</h3>
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Aug 2024 – Present</div>
-          <div class="timeline-title">Teaching Assistant</div>
-          <div class="timeline-place">Dept. of Computer Science · RPI</div>
-          <div class="timeline-detail">CSCI 2600 Principles of Software · CSCI 4430 Programming Languages · CSCI 4440 Software Design</div>
+    <div class="container"><div class="divider"></div></div>
+
+    <section id="research" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Areas</div>
+          <h2 class="section-title">Research Focus</h2>
+          <p class="section-desc">
+            My work connects multimodal learning, medical imaging education, workflow auditability, blockchain-based provenance, and synthetic agent systems. The common theme is structured, verifiable, and human-centered AI.
+          </p>
         </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Jun 2024 – Present</div>
-          <div class="timeline-title">Assistant Professor (On Study Leave)</div>
-          <div class="timeline-place">Dept. of CSE · KUET, Bangladesh</div>
-          <div class="timeline-detail">On leave for doctoral studies at RPI</div>
+
+        <div class="grid-2">
+          <div class="card focus-card reveal">
+            <h3>Multimodal Learning &amp; LLMs</h3>
+            <p>
+              I designed MEDI-SLATE, a slide-lecture aligned text ensemble for medical imaging education, and MILU, a consensus ensemble benchmark for multimodal lecture understanding. I also contributed to ALIVE, a content-aware avatar-lecture interaction engine, together with SlideChain for semantic provenance and N-ReLU for stochastic activation design.
+            </p>
+          </div>
+
+          <div class="card focus-card reveal">
+            <h3>AI Safety &amp; Synthetic Agent Systems</h3>
+            <p>
+              I developed OpenClaw and the Moltbook environment to study risky instruction propagation and norm enforcement in agent-only social systems. I also developed ADAPT, an AI-driven decentralized adaptive publishing framework, as part of a broader research agenda on regulation, auditability, and accountability in synthetic societies.
+            </p>
+          </div>
+
+          <div class="card focus-card reveal">
+            <h3>Secure Information Retrieval &amp; Blockchain</h3>
+            <p>
+              My earlier work focused on user-centric secure skyline queries, blockchain-supported data management, academic credential verification, crime record storage, and medical data sharing using Hyperledger Fabric and IPFS. This background continues to shape my interest in provenance and trustworthy AI workflows.
+            </p>
+          </div>
+
+          <div class="card focus-card reveal">
+            <h3>Machine Learning &amp; NLP</h3>
+            <p>
+              My prior work includes sentiment and emotion recognition for Bangla text, adversarial robustness for text classifiers, COVID-19-related vision and genomics applications, and other machine learning systems that helped shape my later work on evaluation and reliability.
+            </p>
+          </div>
         </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Feb 2022 – May 2024</div>
-          <div class="timeline-title">Lecturer</div>
-          <div class="timeline-place">Dept. of CSE · KUET, Bangladesh</div>
-          <div class="timeline-detail">Microprocessors · Mobile Computing · Digital System Design · Technical Writing</div>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <section id="publications" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Selected and linked</div>
+          <h2 class="section-title">Publications</h2>
+          <p class="section-desc">
+            A curated list of journal papers, conference papers, preprints, and active submissions, with direct links where available.
+          </p>
+        </div>
+
+        <div class="filter-row reveal">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="journal">Journals</button>
+          <button class="filter-btn" data-filter="conference">Conferences</button>
+          <button class="filter-btn" data-filter="preprint">Preprints</button>
+          <button class="filter-btn" data-filter="submitted">Submitted</button>
+          <button class="filter-btn" data-filter="other">Other</button>
+        </div>
+
+        <div class="pub-list">
+          <article class="pub-item reveal" data-type="journal">
+            <div class="pub-year">2026</div>
+            <div class="pub-main">
+              <h3>MEDI-SLATE: A slide-lecture aligned text ensemble for medical imaging education</h3>
+              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. Visual Computing for Industry, Biomedicine, and Art, in press. [IF: 6.0, ESCI, Springer]</p>
+            </div>
+            <div class="pub-badge">Journal</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="journal">
+            <div class="pub-year">2026</div>
+            <div class="pub-main">
+              <h3>MILU: A Consensus Ensemble Benchmark for Multimodal Medical Imaging Lecture Understanding</h3>
+              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. Journal of Medical Imaging, Vol. 13, No. 6, 062202, 2026. [IF: 1.7, Q2, SCIE/Scopus, SPIE]</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://doi.org/10.1117/1.JMI.13.6.062202" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Journal</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="journal">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>Development of an Optically Emulated CT (OECT) Scanner for College Education</h3>
+              <p>Manik, M. M. H., Muldowney, W., Islam, M. Z., and Wang, G. Visual Computing for Industry, Biomedicine, and Art. [IF: 6.0, ESCI, Springer]</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://link.springer.com/article/10.1186/s42492-025-00211-z" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Journal</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="journal">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>Blockchain-aided comparative study of heart disease detection using machine learning-based approaches with an expanded dataset</h3>
+              <p>Ahmed, M. R., Aziz, A., Manik, M. M. H., and Habib, M. A. Computers in Biology and Medicine. [IF: 7.0, Q1, SCIE, Elsevier]</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://www.sciencedirect.com/science/article/abs/pii/S001048252500962X" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Journal</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="journal">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>ShaEr: A Blockchain-Based Framework for Secure Medical Data Sharing and Monetisation</h3>
+              <p>Habib, M. A., and Manik, M. M. H. IET Blockchain (2025). [Q2, Scopus, Wiley/IET]</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/blc2.70008" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Journal</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="journal">
+            <div class="pub-year">2023</div>
+            <div class="pub-main">
+              <h3>A Novel Approach in Determining Areas to Lockdown During a Pandemic: COVID-19 as a Case Study</h3>
+              <p>Manik, M. M. H. International Journal of Information Engineering and Electronic Business, 15(2), 30.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://www.mecs-press.org/ijieeb/ijieeb-v15-n2/IJIEEB-V15-N2-4.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Journal</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="journal">
+            <div class="pub-year">2021</div>
+            <div class="pub-main">
+              <h3>Machine learning approaches for tackling novel coronavirus (COVID-19) pandemic</h3>
+              <p>Rahman, M. M., Islam, M., Manik, M. M. H., Islam, M. R., and Al-Rakhami, M. S. SN Computer Science, 2, 1-10. [IF: 2.38, Q2, Scopus, Springer]</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://link.springer.com/article/10.1007/s42979-021-00774-7" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Journal</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>Unifying Sentiment Analysis and Emotion Recognition for Bangla Text: A Hybrid Approach</h3>
+              <p>Manik, M. M. H., Sagor, A. H., Mondal, F. A., Touhid, M. M., and Islam, M. Z. 2025 International Conference on Electrical, Computer and Communication Engineering (ECCE).</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/11013126" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2024</div>
+            <div class="pub-main">
+              <h3>An Android application for healthcare management system with ML-driven solution</h3>
+              <p>Atik, A. I., Rahman, A., Sami, S. A., and Manik, M. M. H. Proceedings of the 27th International Conference on Computer and Information Technology (ICCIT).</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/document/11021962" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2024</div>
+            <div class="pub-main">
+              <h3>Enhancing Hyperledger Fabric: A scalable framework for optimized blockchain performance</h3>
+              <p>Saha, A., Majumder, S., Manik, M. M. H., and Hashem, M. A. Proceedings of the 27th International Conference on Computer and Information Technology (ICCIT).</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/document/11022136" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2024</div>
+            <div class="pub-main">
+              <h3>Decentralized GDPR compliance: A blockchain framework for personal data management</h3>
+              <p>Islam, M. R., Alam, K. M. R., and Manik, M. M. H. Proceedings of the 27th International Conference on Computer and Information Technology (ICCIT).</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/document/11022541" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2023</div>
+            <div class="pub-main">
+              <h3>Enhancing Robustness of Machine Learning Algorithms for Bangla Text Classification: A Defensive Approach against Adversarial Attacks</h3>
+              <p>Manik, M. M. H., Mahadi, J., Touhid, M. M., and Alam, K. M. R. 2023 6th International Conference on Electrical Information and Communication Technology (EICT), IEEE.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10427936/" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2023</div>
+            <div class="pub-main">
+              <h3>Redefining Crime Record Storage: An Advanced Architecture Harnessing the Power of Blockchain Technology</h3>
+              <p>Manik, M. M. H., Sagor, A. H., Habib, M. A., Touhid, M. M., Ahmed, T., Islam, M. Z., and Haque, F. 2023 26th International Conference on Computer and Information Technology (ICCIT), IEEE.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10441536/" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2023</div>
+            <div class="pub-main">
+              <h3>A Blockchain Based Scalable Framework for Academic Document Verification</h3>
+              <p>Majumder, S., Zaha, R., Manik, M. M. H., and Alam, K. M. R. 2023 26th International Conference on Computer and Information Technology (ICCIT), IEEE.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10441245/" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2023</div>
+            <div class="pub-main">
+              <h3>A Blockchain-based Technique to Prevent Grade Tampering: A University Perspective</h3>
+              <p>Habib, M. A., Manik, M. M. H., and Zaman, S. 2023 International Conference on Electrical, Computer and Communication Engineering (ECCE), IEEE.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10101502/" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2023</div>
+            <div class="pub-main">
+              <h3>A Technique to Avoid Blockchain Denial of Service (BDoS) and Selfish Mining Attack</h3>
+              <p>Habib, M. A., and Manik, M. M. H. 2023 Fifth International Conference on Blockchain Computing and Applications (BCCA), IEEE.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10338881/" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2022</div>
+            <div class="pub-main">
+              <h3>A Hybrid Framework for Sentiment Analysis from Bangla Texts</h3>
+              <p>Manik, M. M. H., Haque, F., Hashem, M. M. A., Habib, M. A., Islam, M. Z., and Ahmed, T. 2022 25th International Conference on Computer and Information Technology (ICCIT), IEEE.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10054952/" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2022</div>
+            <div class="pub-main">
+              <h3>A Blockchain Based Secure Framework for User-centric Multi-party Skyline Queries</h3>
+              <p>Manik, M. M. H., Alam, K. M. R., and Morimoto, Y. 2022 25th International Conference on Computer and Information Technology (ICCIT), IEEE.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10055315/" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2022</div>
+            <div class="pub-main">
+              <h3>Machine Learning Algorithms on COVID-19 Prediction Using CpG Island and AT-CG Feature on Human Genomic Data</h3>
+              <p>Manik, M. M. H., Habib, M. A., and Ahmed, T. International Conference on Machine Intelligence and Emerging Technologies, Springer Nature Switzerland.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://link.springer.com/chapter/10.1007/978-3-031-34622-4_59" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2020</div>
+            <div class="pub-main">
+              <h3>An automated system to limit COVID-19 using facial mask detection in smart city network</h3>
+              <p>Rahman, M. M., Manik, M. M. H., Islam, M. M., Mahmud, S., and Kim, J. H. 2020 IEEE International IOT, Electronics and Mechatronics Conference (IEMTRONICS), IEEE.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/9216386/" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="conference">
+            <div class="pub-year">2019</div>
+            <div class="pub-main">
+              <h3>Opinion Mining from Bangla and Phonetic Bangla Reviews Using Vectorization Methods</h3>
+              <p>Haque, F., Manik, M. M. H., and Hashem, M. M. A. 2019 4th International Conference on Electrical Information and Communication Technology (EICT), IEEE.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/9068834/" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Conference</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="preprint">
+            <div class="pub-year">2026</div>
+            <div class="pub-main">
+              <h3>OpenClaw Agents on Moltbook: Risky Instruction Sharing and Norm Enforcement in an Agent-Only Social Network</h3>
+              <p>Manik, M. M. H., and Wang, G. arXiv:2602.02625.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2602.02625" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Preprint</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="preprint">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>SlideChain: Semantic Provenance for Lecture Understanding via Blockchain Registration</h3>
+              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. arXiv:2512.21684.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2512.21684" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Preprint</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="preprint">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>ALIVE: An Avatar-Lecture Interactive Video Engine with Content-Aware Retrieval for Real-Time Interaction</h3>
+              <p>Islam, M. Z., Manik, M. M. H., and Wang, G. arXiv:2512.20858.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2512.20858" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Preprint</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="preprint">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>N-ReLU: Zero-Mean Stochastic Extension of ReLU</h3>
+              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. arXiv:2511.07559.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2511.07559" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Preprint</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="preprint">
+            <div class="pub-year">2024</div>
+            <div class="pub-main">
+              <h3>Analyzing the Dynamics of COVID-19 Lockdown Success: Insights from Regional Data and Public Health Measures</h3>
+              <p>Manik, M. M. H., Habib, M. A., Islam, M. Z., Ahmed, T., and Haque, F. arXiv:2402.18594.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2402.18594" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Preprint</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="submitted">
+            <div class="pub-year">Under review</div>
+            <div class="pub-main">
+              <h3>A Secure Framework for User-centric Multiparty Skyline Queries via Pruned and Prioritized Datasets</h3>
+              <p>Manik, M. M. H., Alam, K. M. R., and Morimoto, Y. Submitted to Future Generation Computer Systems. [IF: 6.1, Q1, SCIE]</p>
+            </div>
+            <div class="pub-badge">Submitted</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="submitted">
+            <div class="pub-year">Under review</div>
+            <div class="pub-main">
+              <h3>Blockchain-Enabled Secure Land Record Management System with a New Lightweight Cryptosystem Based on Hybrid Chaotic Map</h3>
+              <p>Habib, M. A., and Manik, M. M. H. Submitted to Knowledge-Based Systems. [IF: 8.8, Q1, SCIE]</p>
+            </div>
+            <div class="pub-badge">Submitted</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="submitted">
+            <div class="pub-year">Under review</div>
+            <div class="pub-main">
+              <h3>ADAPT: AI-Driven Decentralized Adaptive Publishing Transformer</h3>
+              <p>Manik, M. M. H., and Wang, G. Submitted to Research Integrity and Peer Review.</p>
+            </div>
+            <div class="pub-badge">Submitted</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="submitted">
+            <div class="pub-year">Under review</div>
+            <div class="pub-main">
+              <h3>Emergent Decentralized Regulation in a Purely Synthetic Society</h3>
+              <p>Manik, M. M. H., and Wang, G. Submitted to Scientific Reports. [IF: 3.8, Q1, SCIE, Nature Portfolio]</p>
+            </div>
+            <div class="pub-badge">Submitted</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="submitted">
+            <div class="pub-year">Under review</div>
+            <div class="pub-main">
+              <h3>Evaluating Risk and Auditability in Workflow Agents for Safety-Critical Domains</h3>
+              <p>Manik, M. M. H., and Wang, G. Submitted to Journal of Information and Intelligence.</p>
+            </div>
+            <div class="pub-badge">Submitted</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="other">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>ChatGPT vs. DeepSeek: A Comparative Study on AI-Based Code Generation</h3>
+              <p>Manik, M. M. H. arXiv:2502.18467.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2502.18467" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Other</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="other">
+            <div class="pub-year">2024</div>
+            <div class="pub-main">
+              <h3>Question-Answering System for Bangla: Fine-tuning BERT-Bangla for a Closed Domain</h3>
+              <p>Roy, S. C., and Manik, M. M. H. arXiv:2410.03923.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2410.03923" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Other</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="other">
+            <div class="pub-year">2022</div>
+            <div class="pub-main">
+              <h3>Classification of DNA Sequence Using Machine Learning Techniques</h3>
+              <p>Habib, M. A., Manik, M. M. H., and Khulna, B. EasyChair preprint.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://easychair.org/publications/preprint/vsSq/open" target="_blank" rel="noopener noreferrer">Preprint</a>
+              </div>
+            </div>
+            <div class="pub-badge">Other</div>
+          </article>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<div class="section-divider"></div>
+    <div class="container"><div class="divider"></div></div>
 
-<!-- Skills -->
-<section id="skills">
-  <div class="section-tag">Capabilities</div>
-  <h2>Technical Skills</h2>
-  <div class="skills-grid">
-    <div class="skill-group reveal">
-      <div class="skill-group-title">ML &amp; AI</div>
-      <div class="skill-tags">
-        <span class="skill-tag">LLMs</span>
-        <span class="skill-tag">Multimodal</span>
-        <span class="skill-tag">Transformers</span>
-        <span class="skill-tag">Deep Learning</span>
-        <span class="skill-tag">Agent Workflows</span>
-        <span class="skill-tag">Benchmarking</span>
-        <span class="skill-tag">Prompt Engineering</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Frameworks</div>
-      <div class="skill-tags">
-        <span class="skill-tag">PyTorch</span>
-        <span class="skill-tag">TensorFlow</span>
-        <span class="skill-tag">HuggingFace</span>
-        <span class="skill-tag">Scikit-learn</span>
-        <span class="skill-tag">NumPy</span>
-        <span class="skill-tag">Pandas</span>
-        <span class="skill-tag">Matplotlib</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Blockchain</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Solidity</span>
-        <span class="skill-tag">Ethereum</span>
-        <span class="skill-tag">Hyperledger</span>
-        <span class="skill-tag">IPFS</span>
-        <span class="skill-tag">Provenance</span>
-        <span class="skill-tag">Cryptography</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Languages &amp; Tools</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">C/C++</span>
-        <span class="skill-tag">Java</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">LaTeX</span>
-        <span class="skill-tag">Linux</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- Awards -->
-<section>
-  <div class="section-tag">Recognition</div>
-  <h2>Honors &amp; Awards</h2>
-  <div class="awards-list">
-    <div class="award-item reveal">
-      <span class="award-icon">🏆</span>
-      <div>
-        <div class="award-title">Best Paper Award · ECCE 2023 · IEEE</div>
-        <div class="award-detail">International Conference on Electrical, Computer and Communication Engineering</div>
-      </div>
-    </div>
-    <div class="award-item reveal">
-      <span class="award-icon">🎓</span>
-      <div>
-        <div class="award-title">Dean's Award — Three Consecutive Years</div>
-        <div class="award-detail">Faculty of Electrical and Electronic Engineering, KUET · Awarded for top academic performance among all CSE students</div>
-      </div>
-    </div>
-    <div class="award-item reveal">
-      <span class="award-icon">📜</span>
-      <div>
-        <div class="award-title">Merit Scholarship · KUET (2016–2020)</div>
-        <div class="award-detail">Granted to students ranking in the top 5% of their cohort</div>
-      </div>
-    </div>
-    <div class="award-item reveal">
-      <span class="award-icon">🖥️</span>
-      <div>
-        <div class="award-title">NVIDIA Academic Grant — DGX Spark (2025)</div>
-        <div class="award-detail">Hardware grant for Iterative Avatar Teaching in NVIDIA Omniverse · PI: Prof. Ge Wang (RPI)</div>
-      </div>
-    </div>
-    <div class="award-item reveal">
-      <span class="award-icon">⚖️</span>
-      <div>
-        <div class="award-title">U.S. Provisional Patent No. 63/975,609 (2026)</div>
-        <div class="award-detail">ADAPT: AI-Driven Decentralized Adaptive Publishing Testbed · Rensselaer Polytechnic Institute</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- Contact -->
-<section id="contact" class="contact-section" style="background:var(--bg2); max-width:100%; padding:5rem 0;">
-  <div style="max-width:1100px; margin:0 auto; padding: 0 3rem;">
-    <div class="contact-grid">
-      <div>
-        <div class="section-tag">Get in touch</div>
-        <h2 style="margin-bottom:1rem;">Let's connect</h2>
-        <p style="color:var(--muted); font-size:0.95rem; line-height:1.75; max-width:420px;">
-          I'm actively seeking a tenure-track faculty position or research scientist role.
-          Open to collaborations on multimodal AI, AI safety, or blockchain-based systems.
-        </p>
-      </div>
-      <div class="contact-info">
-        <a href="mailto:manikm@rpi.edu" class="contact-link">
-          <span class="contact-link-icon">email</span>
-          manikm@rpi.edu
-        </a>
-        <a href="tel:+15183083842" class="contact-link">
-          <span class="contact-link-icon">phone</span>
-          +1 518 308 3842
-        </a>
-        <div class="contact-link" style="cursor:default;">
-          <span class="contact-link-icon">location</span>
-          1604 Highland Ave, Apt 1, Troy, NY, USA
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Background</div>
+          <h2 class="section-title">Education &amp; Experience</h2>
+          <p class="section-desc">
+            Academic training in computer science and engineering, together with teaching and faculty experience across RPI and KUET.
+          </p>
         </div>
-        <a href="https://scholar.google.com" class="contact-link" target="_blank">
-          <span class="contact-link-icon">scholar</span>
-          456+ citations · h-index 8
-        </a>
+
+        <div class="grid-2">
+          <div class="timeline">
+            <div class="timeline-item reveal">
+              <div class="timeline-date">August 2024 – Present</div>
+              <div class="timeline-title">Ph.D. in Computer Science</div>
+              <div class="timeline-place">Rensselaer Polytechnic Institute, Troy, NY</div>
+              <div class="timeline-detail">Advisor: Prof. Ge Wang · Wang-AXIS Lab</div>
+            </div>
+
+            <div class="timeline-item reveal">
+              <div class="timeline-date">September 2020 – March 2023</div>
+              <div class="timeline-title">M.Sc. Eng. in Computer Science and Engineering</div>
+              <div class="timeline-place">Khulna University of Engineering &amp; Technology (KUET)</div>
+              <div class="timeline-detail">CGPA 4.00 / 4.00 · Thesis on blockchain-based secure multi-party skyline queries</div>
+            </div>
+
+            <div class="timeline-item reveal">
+              <div class="timeline-date">November 2015 – March 2020</div>
+              <div class="timeline-title">B.Sc. Eng. in Computer Science and Engineering</div>
+              <div class="timeline-place">Khulna University of Engineering &amp; Technology (KUET)</div>
+              <div class="timeline-detail">CGPA 3.93 / 4.00 · Ranked 1st out of 134 graduates</div>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item reveal">
+              <div class="timeline-date">August 2024 – Present</div>
+              <div class="timeline-title">Teaching Assistant</div>
+              <div class="timeline-place">Department of Computer Science, RPI</div>
+              <div class="timeline-detail">CSCI 2600 Principles of Software · CSCI 4430 Programming Languages · CSCI 4440 Software Design and Documentation · RCOS</div>
+            </div>
+
+            <div class="timeline-item reveal">
+              <div class="timeline-date">June 2024 – Present</div>
+              <div class="timeline-title">Assistant Professor (On Study Leave)</div>
+              <div class="timeline-place">Department of Computer Science and Engineering, KUET</div>
+              <div class="timeline-detail">On study leave for doctoral research at RPI</div>
+            </div>
+
+            <div class="timeline-item reveal">
+              <div class="timeline-date">February 2022 – May 2024</div>
+              <div class="timeline-title">Lecturer</div>
+              <div class="timeline-place">Department of Computer Science and Engineering, KUET</div>
+              <div class="timeline-detail">Microprocessors and Microcontrollers · Robotics Laboratory · Mobile Computing · Technical Writing and Seminar · Digital System Design</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <p>Md Motaleb Hossen Manik · Ph.D. Candidate, RPI · Last updated April 2026</p>
-</footer>
+    <div class="container"><div class="divider"></div></div>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-      }
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Recognition</div>
+          <h2 class="section-title">Honors, Grants &amp; Patent</h2>
+        </div>
+
+        <div class="grid-3">
+          <div class="card reveal">
+            <h3>Honors &amp; Awards</h3>
+            <p>
+              Best Paper Award at ECCE 2023, Dean's Award for three consecutive years at KUET, and Merit Scholarship from 2016 to 2020.
+            </p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Grant Support</h3>
+            <p>
+              NVIDIA Academic Grant Program (2025): hardware grant of 1× NVIDIA DGX Spark for the project <em>Iterative Avatar Teaching in the NVIDIA Omniverse</em>, with Prof. Ge Wang as PI.
+            </p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Patent</h3>
+            <p>
+              U.S. Provisional Patent Application No. 63/975,609 for <em>ADAPT: AI-Driven Decentralized Adaptive Publishing Testbed</em>, filed February 4, 2026.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <section id="service" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Academic service</div>
+          <h2 class="section-title">Professional Service &amp; Mentorship</h2>
+        </div>
+
+        <div class="grid-2">
+          <div class="list-card">
+            <div class="list-item reveal">
+              <strong>Peer Reviewer — Journals</strong>
+              <span>Technology in Society, Elsevier (2025) · Journal of Systems and Software, Elsevier (2025)</span>
+            </div>
+
+            <div class="list-item reveal">
+              <strong>Peer Reviewer — Conferences</strong>
+              <span>IEEE COMPAS 2025 · EICT 2025 · ICCAconf 2024 · EICT 2023</span>
+            </div>
+          </div>
+
+          <div class="list-card">
+            <div class="list-item reveal">
+              <strong>Mentorship &amp; Student Supervision</strong>
+              <span>Supervised 3 undergraduate B.Sc. thesis groups and 2 undergraduate project groups at KUET between 2022 and 2024, covering machine learning, blockchain systems, and large language models.</span>
+            </div>
+
+            <div class="list-item reveal">
+              <strong>Current teaching profile</strong>
+              <span>Teaching across software, programming languages, design, and research-centered project environments while pursuing doctoral work in multimodal and trustworthy AI.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Capabilities</div>
+          <h2 class="section-title">Technical Skills</h2>
+        </div>
+
+        <div class="skills-wrap">
+          <div class="skill-card reveal">
+            <h3>Machine Learning &amp; AI Systems</h3>
+            <div class="tags">
+              <span class="tag">LLMs</span>
+              <span class="tag">Multimodal</span>
+              <span class="tag">Transformers</span>
+              <span class="tag">Deep Learning</span>
+              <span class="tag">Prompt Engineering</span>
+              <span class="tag">Benchmarking</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">Hugging Face</span>
+              <span class="tag">Scikit-learn</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Blockchain &amp; Security</h3>
+            <div class="tags">
+              <span class="tag">Solidity</span>
+              <span class="tag">Ethereum</span>
+              <span class="tag">Hyperledger Fabric</span>
+              <span class="tag">IPFS</span>
+              <span class="tag">Provenance</span>
+              <span class="tag">Secure Data Sharing</span>
+              <span class="tag">Cryptographic Hashing</span>
+              <span class="tag">Digital Signatures</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Programming &amp; Tools</h3>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">C/C++</span>
+              <span class="tag">Java</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Git</span>
+              <span class="tag">LaTeX</span>
+              <span class="tag">Jupyter</span>
+              <span class="tag">Linux/Bash</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Contact</div>
+          <h2 class="section-title">Let’s Connect</h2>
+          <p class="section-desc">
+            Open to academic collaborations, research discussions, invited talks, and faculty or research scientist opportunities in trustworthy AI, multimodal learning, and safety-critical systems.
+          </p>
+        </div>
+
+        <div class="contact-box">
+          <div class="card reveal">
+            <h3 style="margin-bottom: 0.7rem;">Profile</h3>
+            <p>
+              Md Motaleb Hossen Manik<br>
+              Ph.D. Student, Computer Science<br>
+              Rensselaer Polytechnic Institute, Troy, NY, USA
+            </p>
+          </div>
+
+          <div class="contact-links">
+            <a class="contact-link reveal" href="mailto:manikm@rpi.edu">
+              <div class="left">
+                <span class="label">Email</span>
+                <span class="value">manikm@rpi.edu</span>
+              </div>
+              <span>↗</span>
+            </a>
+
+            <a class="contact-link reveal" href="tel:+15183083842">
+              <div class="left">
+                <span class="label">Phone</span>
+                <span class="value">+1 518 308 3842</span>
+              </div>
+              <span>↗</span>
+            </a>
+
+            <a class="contact-link reveal" href="https://scholar.google.com/citations?user=qrDs7WAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+              <div class="left">
+                <span class="label">Google Scholar</span>
+                <span class="value">456+ citations · h-index 8</span>
+              </div>
+              <span>↗</span>
+            </a>
+
+            <a class="contact-link reveal" href="https://www.linkedin.com/in/mh-manik/" target="_blank" rel="noopener noreferrer">
+              <div class="left">
+                <span class="label">LinkedIn</span>
+                <span class="value">Professional profile</span>
+              </div>
+              <span>↗</span>
+            </a>
+
+            <a class="contact-link reveal" href="CV.pdf" download>
+              <div class="left">
+                <span class="label">CV</span>
+                <span class="value">Download current PDF</span>
+              </div>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Md Motaleb Hossen Manik · Last updated April 2026
+  </footer>
+
+  <script>
+    const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "light") {
+      body.classList.add("light");
+      themeToggle.textContent = "☀️ Theme";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("light");
+      const isLight = body.classList.contains("light");
+      localStorage.setItem("theme", isLight ? "light" : "dark");
+      themeToggle.textContent = isLight ? "☀️ Theme" : "🌙 Theme";
     });
-  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const pubItems = document.querySelectorAll(".pub-item");
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const filter = btn.dataset.filter;
+
+        pubItems.forEach(item => {
+          const type = item.dataset.type;
+          item.style.display = (filter === "all" || filter === type) ? "grid" : "none";
+        });
+      });
+    });
+
+    const sections = document.querySelectorAll("section[id]");
+    const navAnchors = document.querySelectorAll(".nav-links a");
+
+    const activateNav = () => {
+      let current = "";
+      sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (window.scrollY >= top) current = section.getAttribute("id");
+      });
+
+      navAnchors.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+      });
+    };
+
+    window.addEventListener("scroll", activateNav);
+    window.addEventListener("load", activateNav);
+  </script>
 </body>
 </html>
