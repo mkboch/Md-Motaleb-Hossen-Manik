@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Md Motaleb Hossen Manik | AI Researcher</title>
-  <meta name="description" content="Md Motaleb Hossen Manik. Ph.D. student at RPI working on multimodal AI, medical imaging education, AI safety, workflow auditability, and synthetic agent systems." />
+  <title>Md Motaleb Hossen Manik | Personal Website</title>
+  <meta name="description" content="Md Motaleb Hossen Manik is a Ph.D. student at Rensselaer Polytechnic Institute working on multimodal AI, medical imaging education, workflow auditability, provenance, and synthetic agent systems." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -42,15 +42,8 @@
       --shadow: 0 20px 50px rgba(0,0,0,0.22);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--sans);
@@ -75,8 +68,12 @@
       z-index: 0;
     }
 
-    a {
-      color: inherit;
+    a { color: inherit; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     .container {
@@ -130,7 +127,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
+      gap: 1.1rem;
       list-style: none;
       flex-wrap: wrap;
       justify-content: flex-end;
@@ -145,9 +142,7 @@
     }
 
     .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--accent);
-    }
+    .nav-links a.active { color: var(--accent); }
 
     .nav-btn {
       border: 1px solid var(--border);
@@ -176,13 +171,11 @@
       border-color: var(--accent);
     }
 
-    .hero {
-      padding: 4.8rem 0 3.2rem;
-    }
+    .hero { padding: 5rem 0 3.3rem; }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
+      grid-template-columns: 1.55fr 0.95fr;
       gap: 2rem;
       align-items: start;
     }
@@ -248,7 +241,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.9rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.6rem;
     }
 
     .btn {
@@ -266,9 +259,7 @@
       transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
+    .btn:hover { transform: translateY(-1px); }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 65%, white));
@@ -281,32 +272,10 @@
       color: var(--text);
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.1rem 1rem;
-      box-shadow: var(--shadow);
-    }
-
-    .stat-value {
-      font-family: var(--mono);
-      color: var(--accent);
-      font-size: 1.35rem;
-      font-weight: 500;
-      margin-bottom: 0.25rem;
-    }
-
-    .stat-label {
+    .hero-note {
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 0.92rem;
+      max-width: 750px;
     }
 
     .hero-panel {
@@ -350,13 +319,9 @@
       font-size: 0.9rem;
     }
 
-    .section {
-      padding: 3.8rem 0;
-    }
+    .section { padding: 3.8rem 0; }
 
-    .section-header {
-      margin-bottom: 2rem;
-    }
+    .section-header { margin-bottom: 2rem; }
 
     .section-kicker {
       font-family: var(--mono);
@@ -430,41 +395,80 @@
       background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
     }
 
-    .timeline {
+    .pub-list,
+    .project-list,
+    .timeline,
+    .list-card {
       display: grid;
       gap: 1rem;
     }
 
-    .timeline-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+    .pub-item,
+    .project-item {
+      display: grid;
+      grid-template-columns: 86px 1fr auto;
+      gap: 1rem;
+      align-items: start;
+      padding: 1.2rem;
       border-radius: 18px;
-      padding: 1.25rem 1.35rem;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
       box-shadow: var(--shadow);
     }
 
-    .timeline-date {
+    .pub-year,
+    .project-label {
       font-family: var(--mono);
-      font-size: 0.82rem;
-      color: var(--accent);
-      margin-bottom: 0.35rem;
-    }
-
-    .timeline-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-    }
-
-    .timeline-place {
       color: var(--accent-3);
-      font-size: 0.94rem;
-      margin-bottom: 0.45rem;
+      font-size: 0.9rem;
+      padding-top: 0.18rem;
     }
 
-    .timeline-detail {
+    .pub-main h3,
+    .project-main h3 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .pub-main p,
+    .project-main p {
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .pub-links,
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.7rem;
+    }
+
+    .pub-link,
+    .project-link {
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: 0.38rem 0.65rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+    }
+
+    .pub-badge,
+    .project-badge {
+      white-space: nowrap;
+      font-family: var(--mono);
+      font-size: 0.77rem;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
     }
 
     .filter-row {
@@ -493,70 +497,43 @@
       background: color-mix(in srgb, var(--bg-card) 70%, var(--accent) 10%);
     }
 
-    .pub-list {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .pub-item {
-      display: grid;
-      grid-template-columns: 72px 1fr auto;
-      gap: 1rem;
-      align-items: start;
-      padding: 1.2rem 1.2rem;
-      border-radius: 18px;
-      border: 1px solid var(--border);
+    .timeline-item,
+    .list-item {
       background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.2rem 1.3rem;
       box-shadow: var(--shadow);
     }
 
-    .pub-year {
+    .timeline-date {
       font-family: var(--mono);
-      color: var(--accent-3);
-      font-size: 0.9rem;
-      padding-top: 0.18rem;
-    }
-
-    .pub-main h3 {
-      font-size: 1rem;
-      margin-bottom: 0.35rem;
-      font-weight: 700;
-      line-height: 1.45;
-    }
-
-    .pub-main p {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.65;
-    }
-
-    .pub-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      margin-top: 0.7rem;
-    }
-
-    .pub-link {
-      text-decoration: none;
-      font-size: 0.84rem;
-      font-weight: 600;
+      font-size: 0.82rem;
       color: var(--accent);
-      border: 1px solid var(--border);
-      padding: 0.38rem 0.65rem;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+      margin-bottom: 0.35rem;
     }
 
-    .pub-badge {
-      white-space: nowrap;
-      font-family: var(--mono);
-      font-size: 0.77rem;
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.7rem;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+    .timeline-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-place {
+      color: var(--accent-3);
+      font-size: 0.94rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .timeline-detail,
+    .list-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .list-item strong {
+      display: block;
+      margin-bottom: 0.18rem;
     }
 
     .skills-wrap {
@@ -598,40 +575,14 @@
       font-family: var(--mono);
     }
 
-    .list-card {
-      display: grid;
-      gap: 0.9rem;
-    }
-
-    .list-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1rem 1.1rem;
-      box-shadow: var(--shadow);
-    }
-
-    .list-item strong {
-      display: block;
-      margin-bottom: 0.18rem;
-    }
-
-    .list-item span {
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
     .contact-box {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
+      grid-template-columns: 1.05fr 1fr;
       gap: 1.2rem;
       align-items: stretch;
     }
 
-    .contact-links {
-      display: grid;
-      gap: 0.85rem;
-    }
+    .contact-links { display: grid; gap: 0.85rem; }
 
     .contact-link {
       display: flex;
@@ -693,6 +644,15 @@
       transform: translateY(0);
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
     @media (max-width: 980px) {
       .hero-grid,
       .grid-2,
@@ -700,10 +660,6 @@
       .skills-wrap,
       .contact-box {
         grid-template-columns: 1fr;
-      }
-
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
       }
 
       .nav-inner {
@@ -722,30 +678,22 @@
       }
     }
 
-    @media (max-width: 640px) {
-      .hero {
-        padding-top: 4rem;
-      }
-
-      h1 {
-        font-size: 2.3rem;
-      }
-
-      .stats {
+    @media (max-width: 700px) {
+      .pub-item,
+      .project-item {
         grid-template-columns: 1fr;
       }
 
-      .pub-item {
-        grid-template-columns: 1fr;
-      }
-
-      .pub-badge {
+      .pub-badge,
+      .project-badge {
         justify-self: start;
       }
+    }
 
-      .nav-btn {
-        width: 100%;
-      }
+    @media (max-width: 640px) {
+      .hero { padding-top: 4rem; }
+      h1 { font-size: 2.3rem; }
+      .nav-btn { width: 100%; }
     }
   </style>
 </head>
@@ -757,15 +705,15 @@
       <div class="nav-right">
         <ul class="nav-links">
           <li><a href="#research">Research</a></li>
+          <li><a href="#selected">Selected Work</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#publications">Publications</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#service">Service</a></li>
-          <li><a href="#skills">Skills</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
 
         <a class="nav-btn cv-btn" href="CV.pdf" download>Download CV</a>
-        <button id="themeToggle" class="nav-btn" type="button">Dark mode</button>
+        <button id="themeToggle" class="nav-btn" type="button" aria-label="Toggle dark mode">Dark mode</button>
       </div>
     </div>
   </nav>
@@ -776,56 +724,42 @@
         <div class="hero-grid">
           <div class="reveal">
             <div class="hero-badge">Ph.D. Student · RPI · Troy, NY</div>
-            <div class="eyebrow">Multimodal AI · Medical Imaging · Agent Systems</div>
+            <div class="eyebrow">Multimodal AI · Trustworthy Systems · Medical Imaging</div>
             <h1>Md Motaleb Hossen Manik</h1>
             <p class="hero-sub">
-              I develop benchmarks, agent frameworks, and evaluation methods for multimodal AI systems, with a focus on medical imaging education, workflow auditability, and emergent norm-formation in synthetic agent societies. My work spans dataset construction, interactive systems, and verifiable provenance for accountable AI.
+              I work on multimodal AI, medical imaging education, workflow auditability, provenance, and synthetic agent systems. My research focuses on building benchmarks, interactive systems, and structured evaluation methods that make AI systems more verifiable, accountable, and human-centered.
             </p>
 
             <div class="hero-cta">
-              <a class="btn btn-secondary" href="mailto:manikm@rpi.edu">Email Me</a>
+              <a class="btn btn-primary" href="CV.pdf" download>Download CV</a>
+              <a class="btn btn-secondary" href="mailto:manikm@rpi.edu">Email</a>
               <a class="btn btn-secondary" href="https://scholar.google.com/citations?user=qrDs7WAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
               <a class="btn btn-secondary" href="https://www.linkedin.com/in/mh-manik/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
 
-            <div class="stats">
-              <div class="stat-card">
-                <div class="stat-value">456+</div>
-                <div class="stat-label">Google Scholar citations</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-value">h = 8</div>
-                <div class="stat-label">Current h-index</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-value">2026</div>
-                <div class="stat-label">Recent journal acceptances</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-value">1</div>
-                <div class="stat-label">U.S. provisional patent</div>
-              </div>
-            </div>
+            <p class="hero-note">
+              Ph.D. student in Computer Science at Rensselaer Polytechnic Institute, advised by Prof. Ge Wang. Also serving as Assistant Professor on study leave from KUET.
+            </p>
           </div>
 
           <aside class="hero-panel reveal">
             <div class="panel-title">Current profile</div>
             <div class="mini-list">
               <div class="mini-item">
-                <strong>Rensselaer Polytechnic Institute</strong>
-                <span>Ph.D. in Computer Science, advised by Prof. Ge Wang</span>
+                <strong>Research agenda</strong>
+                <span>Multimodal learning, medical imaging education, AI safety, provenance, and synthetic agent societies</span>
               </div>
               <div class="mini-item">
-                <strong>Research directions</strong>
-                <span>Multimodal learning, medical imaging education, AI safety, workflow auditability, blockchain-based provenance</span>
+                <strong>Current institution</strong>
+                <span>Rensselaer Polytechnic Institute · Wang-AXIS Lab</span>
               </div>
               <div class="mini-item">
-                <strong>Academic roles</strong>
-                <span>Teaching Assistant at RPI and Assistant Professor on study leave from KUET</span>
+                <strong>Academic background</strong>
+                <span>Ph.D. at RPI, M.Sc. and B.Sc. in CSE from KUET</span>
               </div>
               <div class="mini-item">
-                <strong>Professional focus</strong>
-                <span>Seeking faculty or research scientist opportunities in trustworthy and interpretable AI</span>
+                <strong>Interests</strong>
+                <span>Faculty, research scientist, and academic collaboration opportunities in trustworthy and interpretable AI</span>
               </div>
             </div>
           </aside>
@@ -838,10 +772,10 @@
     <section id="research" class="section">
       <div class="container">
         <div class="section-header reveal">
-          <div class="section-kicker">Areas</div>
-          <h2 class="section-title">Research Focus</h2>
+          <div class="section-kicker">Research</div>
+          <h2 class="section-title">Research Overview</h2>
           <p class="section-desc">
-            My work connects multimodal learning, medical imaging education, workflow auditability, blockchain-based provenance, and synthetic agent systems. The common theme is structured, verifiable, and human-centered AI.
+            My work connects multimodal learning, medical imaging education, provenance-aware workflows, synthetic agent systems, and secure AI infrastructure. Across these themes, I focus on structured, verifiable, and human-centered AI.
           </p>
         </div>
 
@@ -849,28 +783,210 @@
           <div class="card focus-card reveal">
             <h3>Multimodal Learning &amp; LLMs</h3>
             <p>
-              I designed MEDI-SLATE, a slide-lecture aligned text ensemble for medical imaging education, and MILU, a consensus ensemble benchmark for multimodal lecture understanding. I also contributed to ALIVE, a content-aware avatar-lecture interaction engine, together with SlideChain for semantic provenance and N-ReLU for stochastic activation design.
+              I develop multimodal learning methods and evaluation frameworks for medical imaging education. This includes slide-grounded understanding, lecture-aligned text ensembles, interactive avatar-driven teaching systems, and structured methods for improving reliability in AI-mediated educational workflows.
             </p>
           </div>
 
           <div class="card focus-card reveal">
             <h3>AI Safety &amp; Synthetic Agent Systems</h3>
             <p>
-              I developed OpenClaw and the Moltbook environment to study risky instruction propagation and norm enforcement in agent-only social systems. I also developed ADAPT, an AI-driven decentralized adaptive publishing framework, as part of a broader research agenda on regulation, auditability, and accountability in synthetic societies.
+              I study how agent societies behave under risky instructions, norm formation, and decentralized regulation. My work examines how LLM-based agents propagate, correct, and regulate behavior in synthetic social environments, with implications for governance and AI safety.
             </p>
           </div>
 
           <div class="card focus-card reveal">
-            <h3>Secure Information Retrieval &amp; Blockchain</h3>
+            <h3>Workflow Auditability &amp; Provenance</h3>
             <p>
-              My earlier work focused on user-centric secure skyline queries, blockchain-supported data management, academic credential verification, crime record storage, and medical data sharing using Hyperledger Fabric and IPFS. This background continues to shape my interest in provenance and trustworthy AI workflows.
+              I am interested in making AI workflows more accountable through provenance, structured outputs, and risk-aware evaluation. This includes blockchain-anchored registration, traceable workflow design, and system-level methods for reproducibility and auditability.
             </p>
           </div>
 
           <div class="card focus-card reveal">
-            <h3>Machine Learning &amp; NLP</h3>
+            <h3>Secure Data Systems &amp; Applied ML</h3>
             <p>
-              My prior work includes sentiment and emotion recognition for Bangla text, adversarial robustness for text classifiers, COVID-19-related vision and genomics applications, and other machine learning systems that helped shape my later work on evaluation and reliability.
+              My earlier work spans secure multiparty data querying, blockchain-based systems, Bangla NLP, adversarial robustness, and applied machine learning. These projects continue to shape my approach to reliability, privacy, and trustworthy system design.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <section id="selected" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Highlights</div>
+          <h2 class="section-title">Selected Work</h2>
+          <p class="section-desc">
+            A focused selection of papers that best represent my current research direction in multimodal AI, provenance-aware systems, and synthetic agent studies.
+          </p>
+        </div>
+
+        <div class="pub-list">
+          <article class="pub-item reveal">
+            <div class="pub-year">2026</div>
+            <div class="pub-main">
+              <h3>MEDI-SLATE: A slide-lecture aligned text ensemble for medical imaging education</h3>
+              <p>A framework for aligning lecture slides and text representations to support medical imaging education with more structured and reliable AI assistance.</p>
+            </div>
+            <div class="pub-badge">Journal</div>
+          </article>
+
+          <article class="pub-item reveal">
+            <div class="pub-year">2026</div>
+            <div class="pub-main">
+              <h3>MILU: A Consensus Ensemble Benchmark for Multimodal Medical Imaging Lecture Understanding</h3>
+              <p>A benchmark for evaluating multimodal lecture understanding using consensus-based judgments and structured educational content.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://doi.org/10.1117/1.JMI.13.6.062202" target="_blank" rel="noopener noreferrer">Paper</a>
+              </div>
+            </div>
+            <div class="pub-badge">Journal</div>
+          </article>
+
+          <article class="pub-item reveal">
+            <div class="pub-year">2026</div>
+            <div class="pub-main">
+              <h3>OpenClaw Agents on Moltbook: Risky Instruction Sharing and Norm Enforcement in an Agent-Only Social Network</h3>
+              <p>A study of risky instruction propagation, corrective behavior, and emergent regulation in a purely synthetic social network of language-model agents.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2602.02625" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Preprint</div>
+          </article>
+
+          <article class="pub-item reveal">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>ALIVE: An Avatar-Lecture Interactive Video Engine with Content-Aware Retrieval for Real-Time Interaction</h3>
+              <p>An interactive lecture system that combines avatarized delivery with content-aware retrieval for real-time question answering.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2512.20858" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Preprint</div>
+          </article>
+
+          <article class="pub-item reveal">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>SlideChain: Semantic Provenance for Lecture Understanding via Blockchain Registration</h3>
+              <p>A provenance-oriented framework for lecture understanding that anchors semantic records to support traceability and reproducibility.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2512.21684" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Preprint</div>
+          </article>
+
+          <article class="pub-item reveal">
+            <div class="pub-year">2025</div>
+            <div class="pub-main">
+              <h3>N-ReLU: Zero-Mean Stochastic Extension of ReLU</h3>
+              <p>A stochastic activation design exploring zero-mean behavior and architectural implications for modern neural systems.</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/abs/2511.07559" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+            <div class="pub-badge">Preprint</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Systems</div>
+          <h2 class="section-title">Featured Projects &amp; Research Systems</h2>
+          <p class="section-desc">
+            Beyond papers, my work often takes the form of named systems, datasets, benchmarks, and workflow frameworks.
+          </p>
+        </div>
+
+        <div class="project-list">
+          <article class="project-item reveal">
+            <div class="project-label">Benchmark</div>
+            <div class="project-main">
+              <h3>MILU</h3>
+              <p>A consensus ensemble benchmark for multimodal medical imaging lecture understanding, designed to evaluate slide-grounded and lecture-grounded AI reasoning.</p>
+            </div>
+            <div class="project-badge">Multimodal AI</div>
+          </article>
+
+          <article class="project-item reveal">
+            <div class="project-label">Dataset</div>
+            <div class="project-main">
+              <h3>MEDI-SLATE</h3>
+              <p>A slide-lecture aligned text ensemble for medical imaging education that supports structured supervision and educational AI workflows.</p>
+            </div>
+            <div class="project-badge">Education AI</div>
+          </article>
+
+          <article class="project-item reveal">
+            <div class="project-label">System</div>
+            <div class="project-main">
+              <h3>ALIVE</h3>
+              <p>An avatar-lecture interaction engine with content-aware retrieval for real-time learner interaction and lecture-grounded responses.</p>
+            </div>
+            <div class="project-badge">Interactive System</div>
+          </article>
+
+          <article class="project-item reveal">
+            <div class="project-label">Platform</div>
+            <div class="project-main">
+              <h3>OpenClaw / Moltbook</h3>
+              <p>An experimental agent-only social environment for studying risky instruction sharing, corrective dynamics, and emergent norm enforcement among language-model agents.</p>
+            </div>
+            <div class="project-badge">AI Safety</div>
+          </article>
+
+          <article class="project-item reveal">
+            <div class="project-label">Framework</div>
+            <div class="project-main">
+              <h3>SlideChain</h3>
+              <p>A provenance-aware framework for registering lecture semantics and supporting auditability, reproducibility, and traceable content use.</p>
+            </div>
+            <div class="project-badge">Provenance</div>
+          </article>
+
+          <article class="project-item reveal">
+            <div class="project-label">Publishing</div>
+            <div class="project-main">
+              <h3>ADAPT</h3>
+              <p>An AI-driven decentralized adaptive publishing framework exploring governance, review workflow adaptation, and accountable scholarly infrastructure.</p>
+            </div>
+            <div class="project-badge">Governance</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="divider"></div></div>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">Profile</div>
+          <h2 class="section-title">About</h2>
+        </div>
+
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3>Short Bio</h3>
+            <p>
+              I am a Ph.D. student in Computer Science at Rensselaer Polytechnic Institute, advised by Prof. Ge Wang in the Wang-AXIS Lab. My research sits at the intersection of multimodal AI, medical imaging education, workflow auditability, provenance, and synthetic agent systems. I build benchmarks, interactive systems, and evaluation methods for trustworthy AI in safety-critical and research-intensive settings.
+            </p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Background</h3>
+            <p>
+              Before joining RPI, I completed both my M.Sc. and B.Sc. in Computer Science and Engineering at KUET, where my work focused on blockchain-based secure data systems, NLP, and machine learning. I am also serving as an Assistant Professor on study leave from KUET.
             </p>
           </div>
         </div>
@@ -882,10 +998,10 @@
     <section id="publications" class="section">
       <div class="container">
         <div class="section-header reveal">
-          <div class="section-kicker"></div>
+          <div class="section-kicker">Record</div>
           <h2 class="section-title">Publications</h2>
           <p class="section-desc">
-            A curated list of journal papers, conference papers, preprints, and active submissions, with direct links where available.
+            A broader publication record across journals, conferences, preprints, and ongoing work.
           </p>
         </div>
 
@@ -894,8 +1010,7 @@
           <button class="filter-btn" data-filter="journal">Journals</button>
           <button class="filter-btn" data-filter="conference">Conferences</button>
           <button class="filter-btn" data-filter="preprint">Preprints</button>
-          <button class="filter-btn" data-filter="submitted">Submitted</button>
-          <button class="filter-btn" data-filter="other">Other</button>
+          <button class="filter-btn" data-filter="submitted">Under Review</button>
         </div>
 
         <div class="pub-list">
@@ -903,7 +1018,7 @@
             <div class="pub-year">2026</div>
             <div class="pub-main">
               <h3>MEDI-SLATE: A slide-lecture aligned text ensemble for medical imaging education</h3>
-              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. Visual Computing for Industry, Biomedicine, and Art, in press. [IF: 6.0, ESCI, Springer]</p>
+              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. Visual Computing for Industry, Biomedicine, and Art.</p>
             </div>
             <div class="pub-badge">Journal</div>
           </article>
@@ -912,7 +1027,7 @@
             <div class="pub-year">2026</div>
             <div class="pub-main">
               <h3>MILU: A Consensus Ensemble Benchmark for Multimodal Medical Imaging Lecture Understanding</h3>
-              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. Journal of Medical Imaging, Vol. 13, No. 6, 062202, 2026. [IF: 1.7, Q2, SCIE/Scopus, SPIE]</p>
+              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. Journal of Medical Imaging.</p>
               <div class="pub-links">
                 <a class="pub-link" href="https://doi.org/10.1117/1.JMI.13.6.062202" target="_blank" rel="noopener noreferrer">Paper</a>
               </div>
@@ -924,7 +1039,7 @@
             <div class="pub-year">2025</div>
             <div class="pub-main">
               <h3>Development of an Optically Emulated CT (OECT) Scanner for College Education</h3>
-              <p>Manik, M. M. H., Muldowney, W., Islam, M. Z., and Wang, G. Visual Computing for Industry, Biomedicine, and Art. [IF: 6.0, ESCI, Springer]</p>
+              <p>Manik, M. M. H., Muldowney, W., Islam, M. Z., and Wang, G.</p>
               <div class="pub-links">
                 <a class="pub-link" href="https://link.springer.com/article/10.1186/s42492-025-00211-z" target="_blank" rel="noopener noreferrer">Paper</a>
               </div>
@@ -932,227 +1047,11 @@
             <div class="pub-badge">Journal</div>
           </article>
 
-          <article class="pub-item reveal" data-type="journal">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>Blockchain-aided comparative study of heart disease detection using machine learning-based approaches with an expanded dataset</h3>
-              <p>Ahmed, M. R., Aziz, A., Manik, M. M. H., and Habib, M. A. Computers in Biology and Medicine. [IF: 7.0, Q1, SCIE, Elsevier]</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://www.sciencedirect.com/science/article/abs/pii/S001048252500962X" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Journal</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="journal">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>ShaEr: A Blockchain-Based Framework for Secure Medical Data Sharing and Monetisation</h3>
-              <p>Habib, M. A., and Manik, M. M. H. IET Blockchain (2025). [Q2, Scopus, Wiley/IET]</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/blc2.70008" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Journal</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="journal">
-            <div class="pub-year">2023</div>
-            <div class="pub-main">
-              <h3>A Novel Approach in Determining Areas to Lockdown During a Pandemic: COVID-19 as a Case Study</h3>
-              <p>Manik, M. M. H. International Journal of Information Engineering and Electronic Business, 15(2), 30.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://www.mecs-press.org/ijieeb/ijieeb-v15-n2/IJIEEB-V15-N2-4.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Journal</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="journal">
-            <div class="pub-year">2021</div>
-            <div class="pub-main">
-              <h3>Machine learning approaches for tackling novel coronavirus (COVID-19) pandemic</h3>
-              <p>Rahman, M. M., Islam, M., Manik, M. M. H., Islam, M. R., and Al-Rakhami, M. S. SN Computer Science, 2, 1-10. [IF: 2.38, Q2, Scopus, Springer]</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://link.springer.com/article/10.1007/s42979-021-00774-7" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Journal</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>Unifying Sentiment Analysis and Emotion Recognition for Bangla Text: A Hybrid Approach</h3>
-              <p>Manik, M. M. H., Sagor, A. H., Mondal, F. A., Touhid, M. M., and Islam, M. Z. 2025 International Conference on Electrical, Computer and Communication Engineering (ECCE).</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/11013126" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2024</div>
-            <div class="pub-main">
-              <h3>An Android application for healthcare management system with ML-driven solution</h3>
-              <p>Atik, A. I., Rahman, A., Sami, S. A., and Manik, M. M. H. Proceedings of the 27th International Conference on Computer and Information Technology (ICCIT).</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/document/11021962" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2024</div>
-            <div class="pub-main">
-              <h3>Enhancing Hyperledger Fabric: A scalable framework for optimized blockchain performance</h3>
-              <p>Saha, A., Majumder, S., Manik, M. M. H., and Hashem, M. A. Proceedings of the 27th International Conference on Computer and Information Technology (ICCIT).</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/document/11022136" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2024</div>
-            <div class="pub-main">
-              <h3>Decentralized GDPR compliance: A blockchain framework for personal data management</h3>
-              <p>Islam, M. R., Alam, K. M. R., and Manik, M. M. H. Proceedings of the 27th International Conference on Computer and Information Technology (ICCIT).</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/document/11022541" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2023</div>
-            <div class="pub-main">
-              <h3>Enhancing Robustness of Machine Learning Algorithms for Bangla Text Classification: A Defensive Approach against Adversarial Attacks</h3>
-              <p>Manik, M. M. H., Mahadi, J., Touhid, M. M., and Alam, K. M. R. 2023 6th International Conference on Electrical Information and Communication Technology (EICT), IEEE.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10427936/" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2023</div>
-            <div class="pub-main">
-              <h3>Redefining Crime Record Storage: An Advanced Architecture Harnessing the Power of Blockchain Technology</h3>
-              <p>Manik, M. M. H., Sagor, A. H., Habib, M. A., Touhid, M. M., Ahmed, T., Islam, M. Z., and Haque, F. 2023 26th International Conference on Computer and Information Technology (ICCIT), IEEE.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10441536/" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2023</div>
-            <div class="pub-main">
-              <h3>A Blockchain Based Scalable Framework for Academic Document Verification</h3>
-              <p>Majumder, S., Zaha, R., Manik, M. M. H., and Alam, K. M. R. 2023 26th International Conference on Computer and Information Technology (ICCIT), IEEE.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10441245/" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2023</div>
-            <div class="pub-main">
-              <h3>A Blockchain-based Technique to Prevent Grade Tampering: A University Perspective</h3>
-              <p>Habib, M. A., Manik, M. M. H., and Zaman, S. 2023 International Conference on Electrical, Computer and Communication Engineering (ECCE), IEEE.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10101502/" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2023</div>
-            <div class="pub-main">
-              <h3>A Technique to Avoid Blockchain Denial of Service (BDoS) and Selfish Mining Attack</h3>
-              <p>Habib, M. A., and Manik, M. M. H. 2023 Fifth International Conference on Blockchain Computing and Applications (BCCA), IEEE.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10338881/" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2022</div>
-            <div class="pub-main">
-              <h3>A Hybrid Framework for Sentiment Analysis from Bangla Texts</h3>
-              <p>Manik, M. M. H., Haque, F., Hashem, M. M. A., Habib, M. A., Islam, M. Z., and Ahmed, T. 2022 25th International Conference on Computer and Information Technology (ICCIT), IEEE.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10054952/" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2022</div>
-            <div class="pub-main">
-              <h3>A Blockchain Based Secure Framework for User-centric Multi-party Skyline Queries</h3>
-              <p>Manik, M. M. H., Alam, K. M. R., and Morimoto, Y. 2022 25th International Conference on Computer and Information Technology (ICCIT), IEEE.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10055315/" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2022</div>
-            <div class="pub-main">
-              <h3>Machine Learning Algorithms on COVID-19 Prediction Using CpG Island and AT-CG Feature on Human Genomic Data</h3>
-              <p>Manik, M. M. H., Habib, M. A., and Ahmed, T. International Conference on Machine Intelligence and Emerging Technologies, Springer Nature Switzerland.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://link.springer.com/chapter/10.1007/978-3-031-34622-4_59" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2020</div>
-            <div class="pub-main">
-              <h3>An automated system to limit COVID-19 using facial mask detection in smart city network</h3>
-              <p>Rahman, M. M., Manik, M. M. H., Islam, M. M., Mahmud, S., and Kim, J. H. 2020 IEEE International IOT, Electronics and Mechatronics Conference (IEMTRONICS), IEEE.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/9216386/" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2019</div>
-            <div class="pub-main">
-              <h3>Opinion Mining from Bangla and Phonetic Bangla Reviews Using Vectorization Methods</h3>
-              <p>Haque, F., Manik, M. M. H., and Hashem, M. M. A. 2019 4th International Conference on Electrical Information and Communication Technology (EICT), IEEE.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/9068834/" target="_blank" rel="noopener noreferrer">Paper</a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
-
           <article class="pub-item reveal" data-type="preprint">
             <div class="pub-year">2026</div>
             <div class="pub-main">
               <h3>OpenClaw Agents on Moltbook: Risky Instruction Sharing and Norm Enforcement in an Agent-Only Social Network</h3>
-              <p>Manik, M. M. H., and Wang, G. arXiv:2602.02625.</p>
+              <p>Manik, M. M. H., and Wang, G.</p>
               <div class="pub-links">
                 <a class="pub-link" href="https://arxiv.org/abs/2602.02625" target="_blank" rel="noopener noreferrer">arXiv</a>
               </div>
@@ -1164,7 +1063,7 @@
             <div class="pub-year">2025</div>
             <div class="pub-main">
               <h3>SlideChain: Semantic Provenance for Lecture Understanding via Blockchain Registration</h3>
-              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. arXiv:2512.21684.</p>
+              <p>Manik, M. M. H., Islam, M. Z., and Wang, G.</p>
               <div class="pub-links">
                 <a class="pub-link" href="https://arxiv.org/abs/2512.21684" target="_blank" rel="noopener noreferrer">arXiv</a>
               </div>
@@ -1176,7 +1075,7 @@
             <div class="pub-year">2025</div>
             <div class="pub-main">
               <h3>ALIVE: An Avatar-Lecture Interactive Video Engine with Content-Aware Retrieval for Real-Time Interaction</h3>
-              <p>Islam, M. Z., Manik, M. M. H., and Wang, G. arXiv:2512.20858.</p>
+              <p>Islam, M. Z., Manik, M. M. H., and Wang, G.</p>
               <div class="pub-links">
                 <a class="pub-link" href="https://arxiv.org/abs/2512.20858" target="_blank" rel="noopener noreferrer">arXiv</a>
               </div>
@@ -1188,7 +1087,7 @@
             <div class="pub-year">2025</div>
             <div class="pub-main">
               <h3>N-ReLU: Zero-Mean Stochastic Extension of ReLU</h3>
-              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. arXiv:2511.07559.</p>
+              <p>Manik, M. M. H., Islam, M. Z., and Wang, G.</p>
               <div class="pub-links">
                 <a class="pub-link" href="https://arxiv.org/abs/2511.07559" target="_blank" rel="noopener noreferrer">arXiv</a>
               </div>
@@ -1196,97 +1095,43 @@
             <div class="pub-badge">Preprint</div>
           </article>
 
-          <article class="pub-item reveal" data-type="preprint">
-            <div class="pub-year">2024</div>
-            <div class="pub-main">
-              <h3>Analyzing the Dynamics of COVID-19 Lockdown Success: Insights from Regional Data and Public Health Measures</h3>
-              <p>Manik, M. M. H., Habib, M. A., Islam, M. Z., Ahmed, T., and Haque, F. arXiv:2402.18594.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://arxiv.org/abs/2402.18594" target="_blank" rel="noopener noreferrer">arXiv</a>
-              </div>
-            </div>
-            <div class="pub-badge">Preprint</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="submitted">
-            <div class="pub-year">Under review</div>
-            <div class="pub-main">
-              <h3>A Secure Framework for User-centric Multiparty Skyline Queries via Pruned and Prioritized Datasets</h3>
-              <p>Manik, M. M. H., Alam, K. M. R., and Morimoto, Y. Submitted to Future Generation Computer Systems. [IF: 6.1, Q1, SCIE]</p>
-            </div>
-            <div class="pub-badge">Submitted</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="submitted">
-            <div class="pub-year">Under review</div>
-            <div class="pub-main">
-              <h3>Blockchain-Enabled Secure Land Record Management System with a New Lightweight Cryptosystem Based on Hybrid Chaotic Map</h3>
-              <p>Habib, M. A., and Manik, M. M. H. Submitted to Knowledge-Based Systems. [IF: 8.8, Q1, SCIE]</p>
-            </div>
-            <div class="pub-badge">Submitted</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="submitted">
-            <div class="pub-year">Under review</div>
-            <div class="pub-main">
-              <h3>ADAPT: AI-Driven Decentralized Adaptive Publishing Transformer</h3>
-              <p>Manik, M. M. H., and Wang, G. Submitted to Research Integrity and Peer Review.</p>
-            </div>
-            <div class="pub-badge">Submitted</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="submitted">
-            <div class="pub-year">Under review</div>
-            <div class="pub-main">
-              <h3>Emergent Decentralized Regulation in a Purely Synthetic Society</h3>
-              <p>Manik, M. M. H., and Wang, G. Submitted to Scientific Reports. [IF: 3.8, Q1, SCIE, Nature Portfolio]</p>
-            </div>
-            <div class="pub-badge">Submitted</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="submitted">
-            <div class="pub-year">Under review</div>
-            <div class="pub-main">
-              <h3>Evaluating Risk and Auditability in Workflow Agents for Safety-Critical Domains</h3>
-              <p>Manik, M. M. H., and Wang, G. Submitted to Journal of Information and Intelligence.</p>
-            </div>
-            <div class="pub-badge">Submitted</div>
-          </article>
-
-          <article class="pub-item reveal" data-type="other">
+          <article class="pub-item reveal" data-type="conference">
             <div class="pub-year">2025</div>
             <div class="pub-main">
-              <h3>ChatGPT vs. DeepSeek: A Comparative Study on AI-Based Code Generation</h3>
-              <p>Manik, M. M. H. arXiv:2502.18467.</p>
+              <h3>Unifying Sentiment Analysis and Emotion Recognition for Bangla Text: A Hybrid Approach</h3>
+              <p>Manik, M. M. H., Sagor, A. H., Mondal, F. A., Touhid, M. M., and Islam, M. Z.</p>
               <div class="pub-links">
-                <a class="pub-link" href="https://arxiv.org/abs/2502.18467" target="_blank" rel="noopener noreferrer">arXiv</a>
+                <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/11013126" target="_blank" rel="noopener noreferrer">Paper</a>
               </div>
             </div>
-            <div class="pub-badge">Other</div>
+            <div class="pub-badge">Conference</div>
           </article>
 
-          <article class="pub-item reveal" data-type="other">
-            <div class="pub-year">2024</div>
+          <article class="pub-item reveal" data-type="submitted">
+            <div class="pub-year">Review</div>
             <div class="pub-main">
-              <h3>Question-Answering System for Bangla: Fine-tuning BERT-Bangla for a Closed Domain</h3>
-              <p>Roy, S. C., and Manik, M. M. H. arXiv:2410.03923.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://arxiv.org/abs/2410.03923" target="_blank" rel="noopener noreferrer">arXiv</a>
-              </div>
+              <h3>ADAPT: AI-Driven Decentralized Adaptive Publishing Transformer</h3>
+              <p>Manik, M. M. H., and Wang, G.</p>
             </div>
-            <div class="pub-badge">Other</div>
+            <div class="pub-badge">Under Review</div>
           </article>
 
-          <article class="pub-item reveal" data-type="other">
-            <div class="pub-year">2022</div>
+          <article class="pub-item reveal" data-type="submitted">
+            <div class="pub-year">Review</div>
             <div class="pub-main">
-              <h3>Classification of DNA Sequence Using Machine Learning Techniques</h3>
-              <p>Habib, M. A., Manik, M. M. H., and Khulna, B. EasyChair preprint.</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://easychair.org/publications/preprint/vsSq/open" target="_blank" rel="noopener noreferrer">Preprint</a>
-              </div>
+              <h3>Emergent Decentralized Regulation in a Purely Synthetic Society</h3>
+              <p>Manik, M. M. H., and Wang, G.</p>
             </div>
-            <div class="pub-badge">Other</div>
+            <div class="pub-badge">Under Review</div>
+          </article>
+
+          <article class="pub-item reveal" data-type="submitted">
+            <div class="pub-year">Review</div>
+            <div class="pub-main">
+              <h3>Evaluating Risk and Auditability in Workflow Agents for Safety-Critical Domains</h3>
+              <p>Manik, M. M. H., and Wang, G.</p>
+            </div>
+            <div class="pub-badge">Under Review</div>
           </article>
         </div>
       </div>
@@ -1294,14 +1139,11 @@
 
     <div class="container"><div class="divider"></div></div>
 
-    <section id="education" class="section">
+    <section class="section">
       <div class="container">
         <div class="section-header reveal">
-          <div class="section-kicker">Background</div>
-          <h2 class="section-title">Education &amp; Experience</h2>
-          <p class="section-desc">
-            Academic training in computer science and engineering, together with teaching and faculty experience across RPI and KUET.
-          </p>
+          <div class="section-kicker">Academic Profile</div>
+          <h2 class="section-title">Education &amp; Academic Positions</h2>
         </div>
 
         <div class="grid-2">
@@ -1316,14 +1158,14 @@
             <div class="timeline-item reveal">
               <div class="timeline-date">September 2020 – March 2023</div>
               <div class="timeline-title">M.Sc. Eng. in Computer Science and Engineering</div>
-              <div class="timeline-place">Khulna University of Engineering &amp; Technology (KUET)</div>
-              <div class="timeline-detail">CGPA 4.00 / 4.00 · Thesis on blockchain-based secure multi-party skyline queries</div>
+              <div class="timeline-place">Khulna University of Engineering &amp; Technology</div>
+              <div class="timeline-detail">CGPA 4.00 / 4.00 · Thesis on blockchain-based secure multiparty skyline queries</div>
             </div>
 
             <div class="timeline-item reveal">
               <div class="timeline-date">November 2015 – March 2020</div>
               <div class="timeline-title">B.Sc. Eng. in Computer Science and Engineering</div>
-              <div class="timeline-place">Khulna University of Engineering &amp; Technology (KUET)</div>
+              <div class="timeline-place">Khulna University of Engineering &amp; Technology</div>
               <div class="timeline-detail">CGPA 3.93 / 4.00 · Ranked 1st out of 134 graduates</div>
             </div>
           </div>
@@ -1333,21 +1175,21 @@
               <div class="timeline-date">August 2024 – Present</div>
               <div class="timeline-title">Teaching Assistant</div>
               <div class="timeline-place">Department of Computer Science, RPI</div>
-              <div class="timeline-detail">CSCI 2600 Principles of Software · CSCI 4430 Programming Languages · CSCI 4440 Software Design and Documentation · RCOS</div>
+              <div class="timeline-detail">Courses include Principles of Software, Programming Languages, Software Design and Documentation, and RCOS.</div>
             </div>
 
             <div class="timeline-item reveal">
               <div class="timeline-date">June 2024 – Present</div>
               <div class="timeline-title">Assistant Professor (On Study Leave)</div>
               <div class="timeline-place">Department of Computer Science and Engineering, KUET</div>
-              <div class="timeline-detail">On study leave for doctoral research at RPI</div>
+              <div class="timeline-detail">On study leave while pursuing doctoral research at RPI.</div>
             </div>
 
             <div class="timeline-item reveal">
               <div class="timeline-date">February 2022 – May 2024</div>
               <div class="timeline-title">Lecturer</div>
               <div class="timeline-place">Department of Computer Science and Engineering, KUET</div>
-              <div class="timeline-detail">Microprocessors and Microcontrollers · Robotics Laboratory · Mobile Computing · Technical Writing and Seminar · Digital System Design</div>
+              <div class="timeline-detail">Taught courses in microprocessors, robotics lab, mobile computing, technical writing, and digital system design.</div>
             </div>
           </div>
         </div>
@@ -1367,21 +1209,21 @@
           <div class="card reveal">
             <h3>Honors &amp; Awards</h3>
             <p>
-              Best Paper Award at ECCE 2023, Dean's Award for three consecutive years at KUET, and Merit Scholarship from 2016 to 2020.
+              Best Paper Award at ECCE 2023, Dean’s Award for three consecutive years at KUET, and Merit Scholarship during undergraduate study.
             </p>
           </div>
 
           <div class="card reveal">
             <h3>Grant Support</h3>
             <p>
-              NVIDIA Academic Grant Program (2025): hardware grant of 1× NVIDIA DGX Spark for the project <em>Iterative Avatar Teaching in the NVIDIA Omniverse</em>, with Prof. Ge Wang as PI.
+              Graduate research collaborator on an NVIDIA Academic Grant Program project led by Prof. Ge Wang, focused on iterative avatar teaching in NVIDIA Omniverse.
             </p>
           </div>
 
           <div class="card reveal">
             <h3>Patent</h3>
             <p>
-              U.S. Provisional Patent Application No. 63/975,609 for <em>ADAPT: AI-Driven Decentralized Adaptive Publishing Testbed</em>, filed February 4, 2026.
+              Co-inventor on a U.S. provisional patent related to ADAPT, an AI-driven decentralized adaptive publishing framework.
             </p>
           </div>
         </div>
@@ -1390,35 +1232,35 @@
 
     <div class="container"><div class="divider"></div></div>
 
-    <section id="service" class="section">
+    <section class="section">
       <div class="container">
         <div class="section-header reveal">
-          <div class="section-kicker">Academic service</div>
+          <div class="section-kicker">Service</div>
           <h2 class="section-title">Professional Service &amp; Mentorship</h2>
         </div>
 
         <div class="grid-2">
           <div class="list-card">
             <div class="list-item reveal">
-              <strong>Peer Reviewer — Journals</strong>
-              <span>Technology in Society, Elsevier (2025) · Journal of Systems and Software, Elsevier (2025)</span>
+              <strong>Peer Review</strong>
+              <span>Reviewer for journals including Technology in Society and Journal of Systems and Software, and for conferences including IEEE COMPAS, EICT, and ICCAconf.</span>
             </div>
 
             <div class="list-item reveal">
-              <strong>Peer Reviewer — Conferences</strong>
-              <span>IEEE COMPAS 2025 · EICT 2025 · ICCAconf 2024 · EICT 2023</span>
+              <strong>Mentorship</strong>
+              <span>Supervised undergraduate thesis and project groups at KUET across machine learning, blockchain systems, and large language model related topics.</span>
             </div>
           </div>
 
           <div class="list-card">
             <div class="list-item reveal">
-              <strong>Mentorship &amp; Student Supervision</strong>
-              <span>Supervised 3 undergraduate B.Sc. thesis groups and 2 undergraduate project groups at KUET between 2022 and 2024, covering machine learning, blockchain systems, and large language models.</span>
+              <strong>Teaching Profile</strong>
+              <span>Teaching and mentoring across software, programming languages, system design, and research-centered academic environments.</span>
             </div>
 
             <div class="list-item reveal">
-              <strong>Current teaching profile</strong>
-              <span>Teaching across software, programming languages, design, and research-centered project environments while pursuing doctoral work in multimodal and trustworthy AI.</span>
+              <strong>Academic Role</strong>
+              <span>Bringing together research, teaching, and supervision across RPI and KUET in computer science and trustworthy AI.</span>
             </div>
           </div>
         </div>
@@ -1427,10 +1269,10 @@
 
     <div class="container"><div class="divider"></div></div>
 
-    <section id="skills" class="section">
+    <section class="section">
       <div class="container">
         <div class="section-header reveal">
-          <div class="section-kicker">Capabilities</div>
+          <div class="section-kicker">Skills</div>
           <h2 class="section-title">Technical Skills</h2>
         </div>
 
@@ -1439,7 +1281,7 @@
             <h3>Machine Learning &amp; AI Systems</h3>
             <div class="tags">
               <span class="tag">LLMs</span>
-              <span class="tag">Multimodal</span>
+              <span class="tag">Multimodal Learning</span>
               <span class="tag">Transformers</span>
               <span class="tag">Deep Learning</span>
               <span class="tag">Prompt Engineering</span>
@@ -1450,16 +1292,15 @@
               <span class="tag">Scikit-learn</span>
               <span class="tag">NumPy</span>
               <span class="tag">Pandas</span>
-              <span class="tag">Matplotlib</span>
             </div>
           </div>
 
           <div class="skill-card reveal">
             <h3>Blockchain &amp; Security</h3>
             <div class="tags">
-              <span class="tag">Solidity</span>
-              <span class="tag">Ethereum</span>
               <span class="tag">Hyperledger Fabric</span>
+              <span class="tag">Ethereum</span>
+              <span class="tag">Solidity</span>
               <span class="tag">IPFS</span>
               <span class="tag">Provenance</span>
               <span class="tag">Secure Data Sharing</span>
@@ -1494,7 +1335,7 @@
           <div class="section-kicker">Contact</div>
           <h2 class="section-title">Let’s Connect</h2>
           <p class="section-desc">
-            Open to academic collaborations, research discussions, invited talks, and faculty or research scientist opportunities in trustworthy AI, multimodal learning, and safety-critical systems.
+            Open to academic collaborations, invited talks, research discussions, and future opportunities in multimodal, trustworthy, and safety-critical AI.
           </p>
         </div>
 
@@ -1517,18 +1358,10 @@
               <span>↗</span>
             </a>
 
-            <a class="contact-link reveal" href="tel:+15183083842">
-              <div class="left">
-                <span class="label">Phone</span>
-                <span class="value">+1 518 308 3842</span>
-              </div>
-              <span>↗</span>
-            </a>
-
             <a class="contact-link reveal" href="https://scholar.google.com/citations?user=qrDs7WAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
               <div class="left">
                 <span class="label">Google Scholar</span>
-                <span class="value">456+ citations · h-index 8</span>
+                <span class="value">Publications and citation profile</span>
               </div>
               <span>↗</span>
             </a>
@@ -1588,7 +1421,7 @@
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
     const filterButtons = document.querySelectorAll(".filter-btn");
-    const pubItems = document.querySelectorAll(".pub-item");
+    const pubItems = document.querySelectorAll(".pub-item[data-type]");
 
     filterButtons.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -1609,7 +1442,7 @@
     const activateNav = () => {
       let current = "";
       sections.forEach(section => {
-        const top = section.offsetTop - 100;
+        const top = section.offsetTop - 120;
         if (window.scrollY >= top) current = section.getAttribute("id");
       });
 
