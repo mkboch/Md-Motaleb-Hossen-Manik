@@ -1,749 +1,818 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Md Motaleb Hossen Manik | AI Researcher</title>
-  <meta
-    name="description"
-    content="Md Motaleb Hossen Manik is a Ph.D. student at Rensselaer Polytechnic Institute working on multimodal AI, medical imaging education, workflow auditability, provenance, and synthetic agent systems."
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="bg-scene" aria-hidden="true">
-    <div class="bg-aurora aurora-1"></div>
-    <div class="bg-aurora aurora-2"></div>
-    <div class="bg-aurora aurora-3"></div>
-    <div class="bg-grid"></div>
-  </div>
+:root {
+  --bg: #f4f7fb;
+  --bg-soft: #eef3fb;
+  --bg-card: rgba(255, 255, 255, 0.78);
+  --surface: #f7f9fd;
+  --text: #101828;
+  --muted: #5b6780;
+  --border: rgba(16, 24, 40, 0.08);
+  --accent: #2159d6;
+  --accent-2: #6a47da;
+  --accent-3: #0f9d75;
+  --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  --mono: "DM Mono", monospace;
+  --serif: "DM Serif Display", serif;
+  --sans: "Instrument Sans", sans-serif;
+  --maxw: 1160px;
+}
 
-  <nav>
-    <div class="nav-inner">
-      <a class="brand" href="#top"><strong>Md Motaleb Hossen Manik</strong></a>
+body.dark {
+  --bg: #08101f;
+  --bg-soft: #10182d;
+  --bg-card: rgba(20, 30, 54, 0.8);
+  --surface: #1a2643;
+  --text: #e8eef9;
+  --muted: #9aabc8;
+  --border: rgba(111, 150, 255, 0.14);
+  --accent: #73a8ff;
+  --accent-2: #9878ff;
+  --accent-3: #19c99c;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
 
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#research">Research</a></li>
-          <li><a href="#selected">Selected Work</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        <a class="nav-btn cv-btn" href="CV.pdf" download>Download CV</a>
-        <button id="themeToggle" class="nav-btn" type="button" aria-label="Toggle dark mode">
-          Dark mode
-        </button>
-      </div>
-    </div>
-  </nav>
+html {
+  scroll-behavior: smooth;
+}
 
-  <main id="top">
-    <section class="hero hero-bg">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="reveal">
-            <div class="hero-badge">Ph.D. Student · RPI · Troy, NY</div>
-            <div class="eyebrow">Multimodal AI · Trustworthy Systems · Medical Imaging</div>
-            <h1>Md Motaleb Hossen Manik</h1>
-            <p class="hero-sub">
-              I work on multimodal AI, medical imaging education, workflow auditability,
-              provenance, and synthetic agent systems. My research focuses on building
-              benchmarks, interactive systems, and structured evaluation methods that make
-              AI systems more verifiable, accountable, and human-centered.
-            </p>
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background 0.25s ease, color 0.25s ease;
+  background: linear-gradient(180deg, #f7f9fc 0%, #eef3fb 100%);
+}
 
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="CV.pdf" download>Download CV</a>
-              <a class="btn btn-secondary" href="mailto:manikm@rpi.edu">Email</a>
-              <a
-                class="btn btn-secondary"
-                href="https://scholar.google.com/citations?user=qrDs7WAAAAAJ&hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Google Scholar
-              </a>
-              <a
-                class="btn btn-secondary"
-                href="https://www.linkedin.com/in/mh-manik/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-            </div>
+body.dark {
+  background: linear-gradient(180deg, #08101f 0%, #0d1426 100%);
+}
 
-            <p class="hero-note">
-              Ph.D. student in Computer Science at Rensselaer Polytechnic Institute,
-              advised by Prof. Ge Wang. Also serving as Assistant Professor on study
-              leave from KUET.
-            </p>
-          </div>
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
 
-          <aside class="hero-panel reveal">
-            <div class="panel-title">Current profile</div>
-            <div class="mini-list">
-              <div class="mini-item">
-                <strong>Research agenda</strong>
-                <span>
-                  Multimodal learning, medical imaging education, AI safety,
-                  provenance, and synthetic agent societies
-                </span>
-              </div>
-              <div class="mini-item">
-                <strong>Current institution</strong>
-                <span>Rensselaer Polytechnic Institute · Wang-AXIS Lab</span>
-              </div>
-              <div class="mini-item">
-                <strong>Academic background</strong>
-                <span>Ph.D. at RPI, M.Sc. and B.Sc. in CSE from KUET</span>
-              </div>
-              <div class="mini-item">
-                <strong>Interests</strong>
-                <span>
-                  Faculty, research scientist, and academic collaboration opportunities
-                  in trustworthy and interpretable AI
-                </span>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
+.bg-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  transform: translate3d(0, 0, 0);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
 
-    <div class="container"><div class="divider"></div></div>
+.aurora-1 {
+  width: 38vw;
+  height: 38vw;
+  min-width: 320px;
+  min-height: 320px;
+  left: -8%;
+  top: 8%;
+  background: radial-gradient(circle, rgba(33, 89, 214, 0.28) 0%, rgba(33, 89, 214, 0.08) 45%, transparent 72%);
+  animation: floatAurora1 16s infinite alternate ease-in-out;
+}
 
-    <section id="research" class="section section-alt">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-kicker">Research</div>
-          <h2 class="section-title">Research Overview</h2>
-          <p class="section-desc">
-            My work connects multimodal learning, medical imaging education,
-            provenance-aware workflows, synthetic agent systems, and secure AI
-            infrastructure. Across these themes, I focus on structured, verifiable,
-            and human-centered AI.
-          </p>
-        </div>
+.aurora-2 {
+  width: 34vw;
+  height: 34vw;
+  min-width: 300px;
+  min-height: 300px;
+  right: -6%;
+  top: 12%;
+  background: radial-gradient(circle, rgba(106, 71, 218, 0.24) 0%, rgba(106, 71, 218, 0.08) 45%, transparent 72%);
+  animation: floatAurora2 20s infinite alternate ease-in-out;
+}
 
-        <div class="grid-2">
-          <div class="card focus-card reveal">
-            <h3>Multimodal Learning &amp; LLMs</h3>
-            <p>
-              I develop multimodal learning methods and evaluation frameworks for
-              medical imaging education. This includes slide-grounded understanding,
-              lecture-aligned text ensembles, interactive avatar-driven teaching
-              systems, and structured methods for improving reliability in
-              AI-mediated educational workflows.
-            </p>
-          </div>
+.aurora-3 {
+  width: 36vw;
+  height: 36vw;
+  min-width: 320px;
+  min-height: 320px;
+  left: 25%;
+  bottom: -10%;
+  background: radial-gradient(circle, rgba(15, 157, 117, 0.20) 0%, rgba(15, 157, 117, 0.06) 42%, transparent 72%);
+  animation: floatAurora3 22s infinite alternate ease-in-out;
+}
 
-          <div class="card focus-card reveal">
-            <h3>AI Safety &amp; Synthetic Agent Systems</h3>
-            <p>
-              I study how agent societies behave under risky instructions, norm
-              formation, and decentralized regulation. My work examines how LLM-based
-              agents propagate, correct, and regulate behavior in synthetic social
-              environments, with implications for governance and AI safety.
-            </p>
-          </div>
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(33, 89, 214, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(33, 89, 214, 0.035) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.12));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.12));
+}
 
-          <div class="card focus-card reveal">
-            <h3>Workflow Auditability &amp; Provenance</h3>
-            <p>
-              I am interested in making AI workflows more accountable through
-              provenance, structured outputs, and risk-aware evaluation. This includes
-              blockchain-anchored registration, traceable workflow design, and
-              system-level methods for reproducibility and auditability.
-            </p>
-          </div>
+body.dark .aurora-1 {
+  background: radial-gradient(circle, rgba(115, 168, 255, 0.24) 0%, rgba(115, 168, 255, 0.07) 45%, transparent 72%);
+  opacity: 0.42;
+}
 
-          <div class="card focus-card reveal">
-            <h3>Secure Data Systems &amp; Applied ML</h3>
-            <p>
-              My earlier work spans secure multiparty data querying, blockchain-based
-              systems, Bangla NLP, adversarial robustness, and applied machine
-              learning. These projects continue to shape my approach to reliability,
-              privacy, and trustworthy system design.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+body.dark .aurora-2 {
+  background: radial-gradient(circle, rgba(152, 120, 255, 0.22) 0%, rgba(152, 120, 255, 0.07) 45%, transparent 72%);
+  opacity: 0.42;
+}
 
-    <div class="container"><div class="divider"></div></div>
+body.dark .aurora-3 {
+  background: radial-gradient(circle, rgba(25, 201, 156, 0.18) 0%, rgba(25, 201, 156, 0.05) 42%, transparent 72%);
+  opacity: 0.36;
+}
 
-    <section id="selected" class="section">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-kicker">Highlights</div>
-          <h2 class="section-title">Selected Work</h2>
-          <p class="section-desc">
-            A focused selection of papers that best represent my current research
-            direction in multimodal AI, provenance-aware systems, and synthetic
-            agent studies.
-          </p>
-        </div>
+body.dark .bg-grid {
+  background-image:
+    linear-gradient(rgba(115, 168, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(115, 168, 255, 0.04) 1px, transparent 1px);
+}
 
-        <div class="pub-list">
-          <article class="pub-item reveal">
-            <div class="pub-year">2026</div>
-            <div class="pub-main">
-              <h3>MEDI-SLATE: A slide-lecture aligned text ensemble for medical imaging education</h3>
-              <p>
-                A framework for aligning lecture slides and text representations to
-                support medical imaging education with more structured and reliable
-                AI assistance.
-              </p>
-            </div>
-            <div class="pub-badge">Journal</div>
-          </article>
+a {
+  color: inherit;
+}
 
-          <article class="pub-item reveal">
-            <div class="pub-year">2026</div>
-            <div class="pub-main">
-              <h3>MILU: A Consensus Ensemble Benchmark for Multimodal Medical Imaging Lecture Understanding</h3>
-              <p>
-                A benchmark for evaluating multimodal lecture understanding using
-                consensus-based judgments and structured educational content.
-              </p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://doi.org/10.1117/1.JMI.13.6.062202"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Paper
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Journal</div>
-          </article>
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 
-          <article class="pub-item reveal">
-            <div class="pub-year">2026</div>
-            <div class="pub-main">
-              <h3>OpenClaw Agents on Moltbook: Risky Instruction Sharing and Norm Enforcement in an Agent-Only Social Network</h3>
-              <p>
-                A study of risky instruction propagation, corrective behavior, and
-                emergent regulation in a purely synthetic social network of
-                language-model agents.
-              </p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://arxiv.org/abs/2602.02625"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  arXiv
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Preprint</div>
-          </article>
+.container {
+  width: min(var(--maxw), calc(100% - 2rem));
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
 
-          <article class="pub-item reveal">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>ALIVE: An Avatar-Lecture Interactive Video Engine with Content-Aware Retrieval for Real-Time Interaction</h3>
-              <p>
-                An interactive lecture system that combines avatarized delivery with
-                content-aware retrieval for real-time question answering.
-              </p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://arxiv.org/abs/2512.20858"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  arXiv
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Preprint</div>
-          </article>
+nav,
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
 
-          <article class="pub-item reveal">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>SlideChain: Semantic Provenance for Lecture Understanding via Blockchain Registration</h3>
-              <p>
-                A provenance-oriented framework for lecture understanding that anchors
-                semantic records to support traceability and reproducibility.
-              </p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://arxiv.org/abs/2512.21684"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  arXiv
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Preprint</div>
-          </article>
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  border-bottom: 1px solid var(--border);
+}
 
-          <article class="pub-item reveal">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>N-ReLU: Zero-Mean Stochastic Extension of ReLU</h3>
-              <p>
-                A stochastic activation design exploring zero-mean behavior and
-                architectural implications for modern neural systems.
-              </p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://arxiv.org/abs/2511.07559"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  arXiv
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Preprint</div>
-          </article>
-        </div>
-      </div>
-    </section>
+.nav-inner {
+  width: min(var(--maxw), calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
-    <div class="container"><div class="divider"></div></div>
+.brand {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
 
-    <section id="projects" class="section section-alt">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-kicker">Systems</div>
-          <h2 class="section-title">Featured Projects &amp; Research Systems</h2>
-          <p class="section-desc">
-            Beyond papers, my work often takes the form of named systems, datasets,
-            benchmarks, and workflow frameworks.
-          </p>
-        </div>
+.brand strong {
+  color: var(--accent);
+  font-weight: 500;
+}
 
-        <div class="project-list">
-          <article class="project-item reveal">
-            <div class="project-label">Benchmark</div>
-            <div class="project-main">
-              <h3>MILU</h3>
-              <p>
-                A consensus ensemble benchmark for multimodal medical imaging lecture
-                understanding, designed to evaluate slide-grounded and
-                lecture-grounded AI reasoning.
-              </p>
-            </div>
-            <div class="project-badge">Multimodal AI</div>
-          </article>
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 
-          <article class="project-item reveal">
-            <div class="project-label">Dataset</div>
-            <div class="project-main">
-              <h3>MEDI-SLATE</h3>
-              <p>
-                A slide-lecture aligned text ensemble for medical imaging education
-                that supports structured supervision and educational AI workflows.
-              </p>
-            </div>
-            <div class="project-badge">Education AI</div>
-          </article>
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 
-          <article class="project-item reveal">
-            <div class="project-label">System</div>
-            <div class="project-main">
-              <h3>ALIVE</h3>
-              <p>
-                An avatar-lecture interaction engine with content-aware retrieval for
-                real-time learner interaction and lecture-grounded responses.
-              </p>
-            </div>
-            <div class="project-badge">Interactive System</div>
-          </article>
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
 
-          <article class="project-item reveal">
-            <div class="project-label">Platform</div>
-            <div class="project-main">
-              <h3>OpenClaw / Moltbook</h3>
-              <p>
-                An experimental agent-only social environment for studying risky
-                instruction sharing, corrective dynamics, and emergent norm
-                enforcement among language-model agents.
-              </p>
-            </div>
-            <div class="project-badge">AI Safety</div>
-          </article>
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent);
+}
 
-          <article class="project-item reveal">
-            <div class="project-label">Framework</div>
-            <div class="project-main">
-              <h3>SlideChain</h3>
-              <p>
-                A provenance-aware framework for registering lecture semantics and
-                supporting auditability, reproducibility, and traceable content use.
-              </p>
-            </div>
-            <div class="project-badge">Provenance</div>
-          </article>
+.nav-btn {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  padding: 0.62rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
-          <article class="project-item reveal">
-            <div class="project-label">Publishing</div>
-            <div class="project-main">
-              <h3>ADAPT</h3>
-              <p>
-                An AI-driven decentralized adaptive publishing framework exploring
-                governance, review workflow adaptation, and accountable scholarly
-                infrastructure.
-              </p>
-            </div>
-            <div class="project-badge">Governance</div>
-          </article>
-        </div>
-      </div>
-    </section>
+.nav-btn:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
 
-    <div class="container"><div class="divider"></div></div>
+.nav-btn.cv-btn {
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
+  color: white;
+  border-color: transparent;
+}
 
-    <section id="publications" class="section">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-kicker">Record</div>
-          <h2 class="section-title">Publications</h2>
-          <p class="section-desc">
-            A broader publication record across journals, conferences, preprints, and
-            ongoing work.
-          </p>
-        </div>
+.hero {
+  padding: 5.2rem 0 3.8rem;
+  position: relative;
+}
 
-        <div class="filter-row reveal">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="journal">Journals</button>
-          <button class="filter-btn" data-filter="conference">Conferences</button>
-          <button class="filter-btn" data-filter="preprint">Preprints</button>
-          <button class="filter-btn" data-filter="submitted">Under Review</button>
-        </div>
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 1rem 0 auto 0;
+  height: 520px;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(33, 89, 214, 0.16), transparent 24%),
+    radial-gradient(circle at 84% 22%, rgba(106, 71, 218, 0.14), transparent 26%),
+    radial-gradient(circle at 50% 78%, rgba(15, 157, 117, 0.12), transparent 28%);
+  filter: blur(12px);
+  pointer-events: none;
+  z-index: 0;
+}
 
-        <div class="pub-list">
-          <article class="pub-item reveal" data-type="journal">
-            <div class="pub-year">2026</div>
-            <div class="pub-main">
-              <h3>MEDI-SLATE: A slide-lecture aligned text ensemble for medical imaging education</h3>
-              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. Visual Computing for Industry, Biomedicine, and Art.</p>
-            </div>
-            <div class="pub-badge">Journal</div>
-          </article>
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 0.95fr;
+  gap: 2rem;
+  align-items: start;
+}
 
-          <article class="pub-item reveal" data-type="journal">
-            <div class="pub-year">2026</div>
-            <div class="pub-main">
-              <h3>MILU: A Consensus Ensemble Benchmark for Multimodal Medical Imaging Lecture Understanding</h3>
-              <p>Manik, M. M. H., Islam, M. Z., and Wang, G. Journal of Medical Imaging.</p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://doi.org/10.1117/1.JMI.13.6.062202"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Paper
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Journal</div>
-          </article>
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+  padding: 0.42rem 0.78rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 157, 117, 0.24);
+  background: rgba(15, 157, 117, 0.08);
+  color: var(--accent-3);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
 
-          <article class="pub-item reveal" data-type="journal">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>Development of an Optically Emulated CT (OECT) Scanner for College Education</h3>
-              <p>Manik, M. M. H., Muldowney, W., Islam, M. Z., and Wang, G.</p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://link.springer.com/article/10.1186/s42492-025-00211-z"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Paper
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Journal</div>
-          </article>
+.hero-badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-3);
+}
 
-          <article class="pub-item reveal" data-type="preprint">
-            <div class="pub-year">2026</div>
-            <div class="pub-main">
-              <h3>OpenClaw Agents on Moltbook: Risky Instruction Sharing and Norm Enforcement in an Agent-Only Social Network</h3>
-              <p>Manik, M. M. H., and Wang, G.</p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://arxiv.org/abs/2602.02625"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  arXiv
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Preprint</div>
-          </article>
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--accent-3);
+  margin-bottom: 1rem;
+}
 
-          <article class="pub-item reveal" data-type="preprint">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>SlideChain: Semantic Provenance for Lecture Understanding via Blockchain Registration</h3>
-              <p>Manik, M. M. H., Islam, M. Z., and Wang, G.</p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://arxiv.org/abs/2512.21684"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  arXiv
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Preprint</div>
-          </article>
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--accent-3);
+}
 
-          <article class="pub-item reveal" data-type="preprint">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>ALIVE: An Avatar-Lecture Interactive Video Engine with Content-Aware Retrieval for Real-Time Interaction</h3>
-              <p>Islam, M. Z., Manik, M. M. H., and Wang, G.</p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://arxiv.org/abs/2512.20858"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  arXiv
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Preprint</div>
-          </article>
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.9rem, 5vw, 4.6rem);
+  line-height: 1.05;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
 
-          <article class="pub-item reveal" data-type="preprint">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>N-ReLU: Zero-Mean Stochastic Extension of ReLU</h3>
-              <p>Manik, M. M. H., Islam, M. Z., and Wang, G.</p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://arxiv.org/abs/2511.07559"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  arXiv
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Preprint</div>
-          </article>
+.hero-sub {
+  color: var(--muted);
+  font-size: 1.08rem;
+  max-width: 760px;
+  margin-bottom: 1.7rem;
+}
 
-          <article class="pub-item reveal" data-type="conference">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>Unifying Sentiment Analysis and Emotion Recognition for Bangla Text: A Hybrid Approach</h3>
-              <p>Manik, M. M. H., Sagor, A. H., Mondal, F. A., Touhid, M. M., and Islam, M. Z.</p>
-              <div class="pub-links">
-                <a
-                  class="pub-link"
-                  href="https://ieeexplore.ieee.org/abstract/document/11013126"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Paper
-                </a>
-              </div>
-            </div>
-            <div class="pub-badge">Conference</div>
-          </article>
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: 1.3rem;
+}
 
-          <article class="pub-item reveal" data-type="submitted">
-            <div class="pub-year">Review</div>
-            <div class="pub-main">
-              <h3>ADAPT: AI-Driven Decentralized Adaptive Publishing Transformer</h3>
-              <p>Manik, M. M. H., and Wang, G.</p>
-            </div>
-            <div class="pub-badge">Under Review</div>
-          </article>
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.18rem;
+  border-radius: 14px;
+  font-size: 0.96rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
 
-          <article class="pub-item reveal" data-type="submitted">
-            <div class="pub-year">Review</div>
-            <div class="pub-main">
-              <h3>Emergent Decentralized Regulation in a Purely Synthetic Society</h3>
-              <p>Manik, M. M. H., and Wang, G.</p>
-            </div>
-            <div class="pub-badge">Under Review</div>
-          </article>
+.btn:hover {
+  transform: translateY(-1px);
+}
 
-          <article class="pub-item reveal" data-type="submitted">
-            <div class="pub-year">Review</div>
-            <div class="pub-main">
-              <h3>Evaluating Risk and Auditability in Workflow Agents for Safety-Critical Domains</h3>
-              <p>Manik, M. M. H., and Wang, G.</p>
-            </div>
-            <div class="pub-badge">Under Review</div>
-          </article>
-        </div>
-      </div>
-    </section>
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 65%, white));
+  color: white;
+  border-color: transparent;
+}
 
-    <div class="container"><div class="divider"></div></div>
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text);
+}
 
-    <section id="contact" class="section section-alt">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-kicker">Contact</div>
-          <h2 class="section-title">Let’s Connect</h2>
-          <p class="section-desc">
-            Open to academic collaborations, invited talks, research discussions,
-            and future opportunities in multimodal, trustworthy, and safety-critical AI.
-          </p>
-        </div>
+.hero-note {
+  color: var(--muted);
+  font-size: 0.93rem;
+  max-width: 760px;
+}
 
-        <div class="contact-box">
-          <div class="card reveal">
-            <h3 style="margin-bottom: 0.7rem;">Profile</h3>
-            <p>
-              Md Motaleb Hossen Manik<br />
-              Ph.D. Student, Computer Science<br />
-              Rensselaer Polytechnic Institute, Troy, NY, USA
-            </p>
-          </div>
+.hero-panel,
+.card,
+.pub-item,
+.project-item,
+.contact-link {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
 
-          <div class="contact-links">
-            <a class="contact-link reveal" href="mailto:manikm@rpi.edu">
-              <div class="left">
-                <span class="label">Email</span>
-                <span class="value">manikm@rpi.edu</span>
-              </div>
-              <span>↗</span>
-            </a>
+.hero-panel {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-card) 94%, white 6%),
+    var(--bg-card)
+  );
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
 
-            <a
-              class="contact-link reveal"
-              href="https://scholar.google.com/citations?user=qrDs7WAAAAAJ&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div class="left">
-                <span class="label">Google Scholar</span>
-                <span class="value">Publications and citation profile</span>
-              </div>
-              <span>↗</span>
-            </a>
+.panel-title {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-size: 0.78rem;
+  margin-bottom: 1rem;
+}
 
-            <a
-              class="contact-link reveal"
-              href="https://www.linkedin.com/in/mh-manik/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div class="left">
-                <span class="label">LinkedIn</span>
-                <span class="value">Professional profile</span>
-              </div>
-              <span>↗</span>
-            </a>
+.mini-list {
+  display: grid;
+  gap: 0.9rem;
+}
 
-            <a class="contact-link reveal" href="CV.pdf" download>
-              <div class="left">
-                <span class="label">CV</span>
-                <span class="value">Download current PDF</span>
-              </div>
-              <span>↗</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+.mini-item {
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--bg-soft) 68%, transparent);
+}
 
-  <footer>
-    Md Motaleb Hossen Manik · Last updated April 2026
-  </footer>
+.mini-item strong {
+  display: block;
+  font-size: 0.96rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
 
-  <script>
-    const body = document.body;
-    const themeToggle = document.getElementById("themeToggle");
+.mini-item span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
 
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      body.classList.add("dark");
-      themeToggle.textContent = "Light mode";
-    } else {
-      themeToggle.textContent = "Dark mode";
-    }
+.section {
+  padding: 4rem 0;
+}
 
-    themeToggle.addEventListener("click", () => {
-      body.classList.toggle("dark");
-      const isDark = body.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-      themeToggle.textContent = isDark ? "Light mode" : "Dark mode";
-    });
+.section-alt {
+  position: relative;
+}
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.12 });
+.section-alt::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.10),
+    rgba(255, 255, 255, 0.04)
+  );
+  pointer-events: none;
+}
 
-    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+body.dark .section-alt::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+}
 
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const pubItems = document.querySelectorAll(".pub-item[data-type]");
+.section-header {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
 
-    filterButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        filterButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const filter = btn.dataset.filter;
+.section-kicker {
+  font-family: var(--mono);
+  color: var(--accent-2);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.77rem;
+  margin-bottom: 0.6rem;
+}
 
-        pubItems.forEach(item => {
-          const type = item.dataset.type;
-          item.style.display = (filter === "all" || filter === type) ? "grid" : "none";
-        });
-      });
-    });
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.05rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
 
-    const sections = document.querySelectorAll("section[id]");
-    const navAnchors = document.querySelectorAll(".nav-links a");
+.section-desc {
+  color: var(--muted);
+  max-width: 820px;
+}
 
-    const activateNav = () => {
-      let current = "";
-      sections.forEach(section => {
-        const top = section.offsetTop - 120;
-        if (window.scrollY >= top) current = section.getAttribute("id");
-      });
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0.5rem 0 0;
+}
 
-      navAnchors.forEach(link => {
-        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
-      });
-    };
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.3rem;
+}
 
-    window.addEventListener("scroll", activateNav);
-    window.addEventListener("load", activateNav);
-  </script>
-</body>
-</html>
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 1.45rem;
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 1;
+}
+
+.card h3 {
+  font-size: 1.08rem;
+  margin-bottom: 0.55rem;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.focus-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.focus-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+}
+
+.pub-list,
+.project-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.pub-item,
+.project-item {
+  display: grid;
+  grid-template-columns: 88px 1fr auto;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.2rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 1;
+}
+
+.pub-year,
+.project-label {
+  font-family: var(--mono);
+  color: var(--accent-3);
+  font-size: 0.9rem;
+  padding-top: 0.18rem;
+}
+
+.pub-main h3,
+.project-main h3 {
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.pub-main p,
+.project-main p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.pub-links,
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.7rem;
+}
+
+.pub-link,
+.project-link {
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.68rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+}
+
+.pub-badge,
+.project-badge {
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 0.77rem;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.45rem;
+  position: relative;
+  z-index: 1;
+}
+
+.filter-btn {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--muted);
+  padding: 0.68rem 0.98rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--bg-card) 72%, var(--accent) 10%);
+}
+
+.contact-box {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 1.2rem;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-links {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 0.98rem 1rem;
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-link:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.contact-link .left {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-link .label {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  margin-bottom: 0.18rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contact-link .value {
+  color: var(--text);
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+footer {
+  padding: 2rem 0 3rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes floatAurora1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(70px, 30px, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(20px, 90px, 0) scale(0.96);
+  }
+}
+
+@keyframes floatAurora2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-80px, 40px, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-20px, 100px, 0) scale(0.95);
+  }
+}
+
+@keyframes floatAurora3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(40px, -50px, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(-60px, -20px, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .bg-aurora {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .grid-2,
+  .contact-box {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-inner {
+    align-items: flex-start;
+    padding: 0.9rem 0;
+    flex-direction: column;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 700px) {
+  .pub-item,
+  .project-item {
+    grid-template-columns: 1fr;
+  }
+
+  .pub-badge,
+  .project-badge {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 4rem;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  .nav-btn {
+    width: 100%;
+  }
+
+  .aurora-1,
+  .aurora-2,
+  .aurora-3 {
+    filter: blur(70px);
+  }
+}
