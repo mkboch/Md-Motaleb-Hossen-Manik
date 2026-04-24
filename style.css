@@ -215,7 +215,7 @@ body.dark .nav-profile-photo {
 }
 
 body.nav-scrolled .nav-inner {
-  min-height: 56px;
+  min-height: 30px;
 }
 
 body.nav-scrolled .nav-profile-wrap {
