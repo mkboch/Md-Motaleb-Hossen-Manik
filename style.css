@@ -105,36 +105,6 @@ body.dark {
   animation: floatAurora3 22s infinite alternate ease-in-out;
 }
 
-
-.pub-scroll {
-  max-height: 900px;
-  overflow-y: auto;
-  padding-right: 0.35rem;
-  position: relative;
-  z-index: 1;
-}
-
-.pub-scroll::-webkit-scrollbar {
-  width: 10px;
-}
-
-.pub-scroll::-webkit-scrollbar-track {
-  background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
-  border-radius: 999px;
-}
-
-.pub-scroll::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--accent) 35%, var(--bg-soft));
-  border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-.pub-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--accent) 35%, var(--bg-soft)) color-mix(in srgb, var(--bg-soft) 72%, transparent);
-}
-
 .bg-grid {
   position: absolute;
   inset: 0;
@@ -199,6 +169,11 @@ nav {
   -webkit-backdrop-filter: blur(18px);
   background: color-mix(in srgb, var(--bg) 72%, transparent);
   border-bottom: 1px solid var(--border);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+nav.is-scrolled {
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
 .nav-inner {
@@ -209,6 +184,44 @@ nav {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  transition: min-height 0.25s ease, padding 0.25s ease;
+}
+
+.nav-profile-wrap {
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.25s ease, opacity 0.25s ease, margin-right 0.25s ease;
+  margin-right: 0;
+  flex: 0 0 auto;
+}
+
+.nav-profile-photo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid rgba(255,255,255,0.9);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  display: block;
+}
+
+body.dark .nav-profile-photo {
+  border-color: rgba(10, 16, 31, 0.95);
+}
+
+body.nav-scrolled .nav-inner {
+  min-height: 56px;
+}
+
+body.nav-scrolled .nav-profile-wrap {
+  width: 34px;
+  opacity: 1;
+  margin-right: 0.55rem;
 }
 
 .brand {
@@ -218,11 +231,19 @@ nav {
   color: var(--text);
   text-decoration: none;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
 }
 
 .brand strong {
   color: var(--accent);
   font-weight: 500;
+  transition: font-size 0.25s ease;
+}
+
+body.nav-scrolled .brand strong {
+  font-size: 0.92rem;
 }
 
 .nav-right {
@@ -247,7 +268,11 @@ nav {
   color: var(--muted);
   font-size: 0.92rem;
   font-weight: 500;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, font-size 0.25s ease;
+}
+
+body.nav-scrolled .nav-links a {
+  font-size: 0.86rem;
 }
 
 .nav-links a:hover,
@@ -263,12 +288,17 @@ nav {
   border-radius: 12px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, padding 0.25s ease, font-size 0.25s ease;
   text-decoration: none;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+body.nav-scrolled .nav-btn {
+  padding: 0.48rem 0.72rem;
+  font-size: 0.82rem;
 }
 
 .nav-btn:hover {
@@ -746,6 +776,35 @@ body.dark .section-alt::before {
   background: color-mix(in srgb, var(--bg-card) 72%, var(--accent) 10%);
 }
 
+.pub-scroll {
+  max-height: 900px;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pub-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.pub-scroll::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+  border-radius: 999px;
+}
+
+.pub-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--accent) 35%, var(--bg-soft));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.pub-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent) 35%, var(--bg-soft)) color-mix(in srgb, var(--bg-soft) 72%, transparent);
+}
+
 .skills-wrap {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -903,6 +962,14 @@ footer {
   .nav-links {
     justify-content: flex-start;
   }
+
+  body.nav-scrolled .nav-inner {
+    min-height: 52px;
+  }
+
+  body.nav-scrolled .nav-links {
+    gap: 0.8rem;
+  }
 }
 
 @media (max-width: 700px) {
@@ -943,5 +1010,26 @@ footer {
 
   .top-profile-photo {
     object-position: center top;
+  }
+
+  .brand strong {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  body.nav-scrolled .nav-profile-wrap {
+    width: 30px;
+    margin-right: 0.45rem;
+  }
+
+  .nav-profile-photo {
+    width: 30px;
+    height: 30px;
+  }
+
+  body.nav-scrolled .nav-btn {
+    padding: 0.42rem 0.6rem;
+    font-size: 0.78rem;
   }
 }
