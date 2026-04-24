@@ -334,6 +334,12 @@ body.nav-scrolled .nav-btn {
   font-size: 0.82rem;
 }
 
+body.nav-scrolled .theme-icon-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
 .nav-btn:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
@@ -343,6 +349,42 @@ body.nav-scrolled .nav-btn {
   background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
   color: white;
   border-color: transparent;
+}
+.theme-icon-btn {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  position: relative;
+}
+
+.theme-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sun-icon {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.moon-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.dark .sun-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.dark .moon-icon {
+  opacity: 0;
+  transform: scale(0.85);
 }
 
 .hero {
@@ -1066,3 +1108,5 @@ footer {
     font-size: 0.78rem;
   }
 }
+
+
