@@ -176,6 +176,39 @@ nav.is-scrolled {
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.visitor-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-card) 84%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.visitor-label {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.visitor-counter img {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+
+
 .nav-inner {
   width: min(var(--maxw), calc(100% - 2rem));
   margin: 0 auto;
