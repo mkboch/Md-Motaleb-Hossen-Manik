@@ -16,7 +16,6 @@
   --maxw: 1160px;
 }
 
-
 body.dark {
   --bg: #08101f;
   --bg-soft: #10182d;
@@ -177,39 +176,6 @@ nav.is-scrolled {
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
-
-.footer-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.visitor-counter {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.45rem 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--bg-card) 84%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.visitor-label {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-.visitor-counter img {
-  height: 20px;
-  width: auto;
-  display: block;
-}
-
-
 .nav-inner {
   width: min(var(--maxw), calc(100% - 2rem));
   margin: 0 auto;
@@ -249,7 +215,7 @@ body.dark .nav-profile-photo {
 }
 
 body.nav-scrolled .nav-inner {
-  min-height: 50px;
+  min-height: 56px;
 }
 
 body.nav-scrolled .nav-profile-wrap {
@@ -335,12 +301,6 @@ body.nav-scrolled .nav-btn {
   font-size: 0.82rem;
 }
 
-body.nav-scrolled .theme-icon-btn {
-  width: 36px;
-  height: 36px;
-  padding: 0;
-}
-
 .nav-btn:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
@@ -351,11 +311,18 @@ body.nav-scrolled .theme-icon-btn {
   color: white;
   border-color: transparent;
 }
+
 .theme-icon-btn {
   width: 44px;
   height: 44px;
   padding: 0;
   position: relative;
+}
+
+body.nav-scrolled .theme-icon-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
 }
 
 .theme-icon {
@@ -1088,12 +1055,6 @@ footer {
     object-position: center top;
   }
 
-  .brand strong {
-    max-width: 160px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
   body.nav-scrolled .nav-profile-wrap {
     width: 30px;
     margin-right: 0.45rem;
@@ -1109,5 +1070,3 @@ footer {
     font-size: 0.78rem;
   }
 }
-
-
