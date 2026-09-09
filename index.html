@@ -1014,7 +1014,22 @@
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
     const filterButtons = document.querySelectorAll(".filter-btn");
-    const pubItems = document.querySelectorAll(".pub-item[data-type]");
+    const pubList = document.querySelector(".pub-list");
+    const pubItems = Array.from(document.querySelectorAll(".pub-item[data-type]"));
+
+    const publicationOrder = {
+      journal: 0,
+      conference: 1,
+      preprint: 2,
+      submitted: 3
+    };
+
+    pubItems
+      .sort((a, b) => {
+        return (publicationOrder[a.dataset.type] ?? 99)
+          - (publicationOrder[b.dataset.type] ?? 99);
+      })
+      .forEach(item => pubList.appendChild(item));
 
     const publicationCounts = {
       all: pubItems.length,
